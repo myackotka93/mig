@@ -12,6 +12,6 @@ deploy: https://mig-six.vercel.app/
 
 ## Запуск проекта
 
-npm install yarn - установка yarn
-yarn install - установка библиотек
-yarn dev - запуск проекта
+- npm install yarn - установка yarn
+- yarn install - установка библиотек
+- yarn dev - запуск проекта
