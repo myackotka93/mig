@@ -1,0 +1,81 @@
+@import "@/styles/global/mixins";
+
+// .QuoteItem {
+//   // position: relative;
+// }
+
+.Layout {
+  display: flex;
+  position: relative;
+  background-color: rgba(14, 63, 181, 1);
+  width: 100%;
+
+  @include mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+// .discription {
+//   max-width: 224px;
+//   width: 100%;
+// }
+
+.wrapper {
+  width: 66%;
+  display: flex;
+
+  @include vw-property(
+    (
+      padding-left: 158,
+      padding-right: 76,
+      padding-top: 96,
+      padding-bottom: 72,
+    )
+  );
+
+  @include mobile {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    @include spacer(padding, b, 1 / 2);
+  }
+}
+
+.text {
+  color: #ffffff;
+  @include spacer(margin, b, 2 / 1.33);
+}
+
+.name {
+  color: #ffffff;
+  @include spacer(margin, b, 1 / 4);
+  @include font-size(26, 22)
+}
+
+.post {
+  color: rgba(255, 255, 255, 0.6);
+  @include spacer(margin, b);
+  @include font-size(20, 16)
+}
+
+.img {
+  width: 34%;
+  object-fit: cover;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @include mobile {
+    position: static;
+    width: 100%;
+  }
+}
+
+.icon {
+  @include spacer(margin, r, 3 / 4);
+}
+
+// .Button {
+//   // @include button(182px, 56px, 0);
+// }

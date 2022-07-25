@@ -1,0 +1,71 @@
+@import "@/styles/global/mixins";
+
+.Partners {
+}
+
+.partners {
+  &_blocks {
+    width: 100%;
+
+    :global(.swiper-wrapper) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+
+      @include laptop {
+        gap: 24px;
+      }
+
+      @include tablet {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+
+        :global(.swiper-slide) {
+          height: auto;
+        }
+      }
+    }
+
+    :global(.swiper-pagination) {
+      display: none;
+
+      @include tablet {
+        display: flex;
+      }
+    }
+  }
+
+  &_text {
+    // max-width: 300px;
+    color: color(gray);
+    @include spacer(margin, t, 5 / 4);
+    flex: 1;
+  }
+
+  .partner {
+    @include vw-property(
+      (
+        height: 563,
+      )
+    );
+
+    @include laptop {
+      @include vw-property(
+        (
+          height: 600,
+        )
+      );
+    }
+
+    @include tablet-small {
+      height: 100%;
+    }
+  }
+
+  // &_buttons {
+  //   display: flex;
+  //   width: 120px;
+  //   justify-content: space-between;
+  // }
+}

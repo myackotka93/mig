@@ -1,0 +1,78 @@
+@import '@/styles/global/mixins';
+
+.Plan {
+  width: 100%;
+  background-color: rgba(238, 239, 240, 1);
+  @include spacer(padding, x, 6 / 4);
+  @include spacer(padding, t, 4 / 1.05);
+  @include spacer(padding, b, 5 / 1.08);
+  position: relative;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: #0E3FB5;
+  @include spacer(margin, b, 4 / 1.42);
+  @include spacer(padding, l, 4 / 1.25);
+}
+
+.divider_gchp {
+  border-bottom: 1px solid #0E3FB5;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  width: 100%;
+  z-index: 1;
+  margin: 0;
+  left: 0;
+}
+
+.list {
+  display: flex;
+  height: 420px;
+  position: relative;
+  align-items: center;
+  // justify-content: space-between;
+  padding-left: 102px;
+
+  @include vw-property((padding-left: 102));
+}
+
+.icon {
+  position: static;
+}
+
+.item {
+  position: relative;
+}
+
+.value {
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #0e3fb5;
+  @include spacer(margin, b, 1 / 2);
+  display: flex;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  display: flex;
+  align-items: flex-end;
+  letter-spacing: -0.03em;
+  color: #0e3fb5;
+  margin: 0;
+}
+
+.dop {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: -0.03em;
+}

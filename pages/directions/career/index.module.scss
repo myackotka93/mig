@@ -1,0 +1,86 @@
+@import "@/styles/global/mixins";
+
+.advantages {
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &_left {
+    width: 55%;
+  }
+
+  &_right {
+    margin-top: 48px;
+    width: 45%;
+
+    @include mobile {
+      margin-top: 0;
+    }
+  }
+}
+
+.advantages_left {
+  width: 100%;
+}
+
+.advantages_right {
+  width: 100%;
+}
+
+.projects {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(50% - $offsetMain);
+
+    @include tablet {
+      flex-direction: column;
+      width: calc(100% - $offsetMain);
+      @include spacer(margin, x, 0);
+    }
+  }
+}
+
+.cards {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  @include tablet-small {
+    // flex-direction: column;
+    @include spacer(margin, r, -1 / 2);
+    // @include spacer(margin, x, 0);
+  }
+
+  @include mobile {
+    @include spacer(margin, x, -1 / 4);
+  }
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(25% - $offsetMain);
+
+    @include tablet {
+      // flex-direction: column;
+      width: calc(33.33% - $offsetMain);
+      // @include spacer(margin, x, 0);
+    }
+
+    @include mobile {
+      @include spacer(margin, x, 1 / 4);
+      width: calc(50% - $offsetMain / 2);
+      @include spacer(margin, b, 1 / 2);
+    }
+  }
+}

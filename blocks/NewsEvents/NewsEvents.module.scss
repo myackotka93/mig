@@ -1,0 +1,10 @@
+@import "@/styles/global/mixins";
+
+.NewsEvents {
+}
+
+.right {
+  > :last-child {
+    display: none;
+  }
+}

@@ -1,0 +1,13 @@
+@import "@/styles/global/mixins";
+
+.Divider {
+  width: calc(100% + $offsetMain * 2);
+  height: 0px;
+  @include spacer(margin, y);
+  @include spacer(margin, x, -1);
+  border-bottom: 1px solid #dadce0;
+}
+
+.light {
+  border-color: rgba(#fff, 0.2);
+}

@@ -1,0 +1,8 @@
+@import "@/styles/global/mixins";
+
+.OnlyRight {
+  margin-left: auto;
+  width: 67.8%;
+  @include spacer(padding, x);
+  border-left: 1px solid #dadce0;
+}

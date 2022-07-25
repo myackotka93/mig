@@ -1,0 +1,88 @@
+@import "@/styles/global/mixins";
+
+.projects {
+  @include spacer(padding, r);
+  @include spacer(padding, b, 1.81);
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(50% - $offsetMain);
+  }
+}
+
+.person_avatar {
+  @include spacer(margin, y, 6 / 4);
+}
+
+.direction_item {
+  @include spacer(margin, b, 1);
+}
+
+.advantages {
+  // background: #f3f9ff;
+}
+
+.map {
+  padding: 0;
+  @include spacer(padding, l);
+  display: flex;
+  align-items: stretch;
+
+  &_container {
+    background: #f3f9ff;
+  }
+
+  &_img {
+    @include spacer(margin, y, -1);
+    width: 100%;
+    position: relative;
+
+    @include aspect-ratio(308, 235);
+
+    @include tablet-small {
+      @include spacer(margin, y, 0);
+    }
+  }
+
+  &_buttons {
+  }
+}
+
+.filter_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @include spacer(margin, t, 3);
+
+  > * {
+    @include spacer(margin, y, 1 / 4);
+  }
+}
+
+.projects {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(50% - $offsetMain);
+  }
+}
+
+.equipments {
+  display: flex;
+
+  &_left {
+    width: 55%;
+  }
+
+  &_right {
+    margin-top: 40px;
+    width: 45%;
+  }
+}

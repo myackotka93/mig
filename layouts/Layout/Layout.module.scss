@@ -1,0 +1,29 @@
+@import "@/styles/global/mixins";
+
+.Layout {
+  width: 100%;
+  // @include spacer(padding, y);
+  display: flex;
+
+  @include vw-property(
+    (
+      padding-top: 32,
+      padding-bottom: 32,
+    )
+  );
+
+  @include tablet-small {
+    flex-direction: column;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include mobile {
+    padding: 24px;
+  }
+}
+
+.blue {
+  background-color: color(blue);
+  color: #fff;
+}

@@ -1,0 +1,24 @@
+@import "@/styles/global/mixins";
+
+.EmptyButton {
+  border-radius: 32px;
+  border: 2px solid rgba(#fff, 0.5);
+  height: 56px;
+  @include spacer(padding, x, 3 / 4);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  white-space: nowrap;
+  @include transition(background-color, color, border-color);
+
+  &:hover {
+    background-color: #fff;
+    color: color(blue);
+  }
+}
+
+.active {
+  background-color: #fff;
+  color: color(blue);
+  border-color: #fff;
+}

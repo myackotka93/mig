@@ -1,0 +1,83 @@
+@import "@/styles/global/mixins";
+
+.Person {
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.img {
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.color {
+  background: #b8c3cf;
+}
+
+.wrapper {
+  @include spacer(padding, l, 10 / 4);
+  flex: 1;
+
+  @include vw-property(
+    (
+      padding-left: 80,
+    )
+  );
+
+  width: calc(100% - 22%);
+
+  @include laptop {
+    @include vw-property(
+      (
+        width: 725px,
+      )
+    );
+  }
+
+  @include mobile {
+    @include spacer(margin, t);
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
+.name {
+  font-weight: 500;
+  @include font-size(36, 22);
+  color: #11151d;
+  margin-bottom: 16px;
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 4);
+  }
+}
+
+.post {
+  font-weight: 400;
+  @include font-size(20, 14);
+  line-height: 166%;
+  color: rgba(17, 21, 29, 0.8);
+  margin-bottom: 16px;
+  @include vw-property(
+    (
+      width: 683,
+    )
+  );
+
+  @include mobile {
+    width: 100%;
+    @include spacer(margin, b, 3 / 4);
+  }
+}
+
+.Button {
+  @include button(174px, 48px, 0);
+  background-color: #fff;
+  color: #0e3fb5;
+  border: 1px solid #dadce0;
+}

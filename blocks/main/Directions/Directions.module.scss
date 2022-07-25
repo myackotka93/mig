@@ -1,0 +1,157 @@
+@import "@/styles/global/mixins";
+
+.directions {
+  margin-top: 560px;
+  @include spacer(padding, y, 0);
+  @include vw-property(
+    (
+      padding-left: 158,
+      padding-right: 158,
+    )
+  );
+
+  @include laptop {
+    @include vw-property(
+      (
+        padding-left: 103,
+        padding-right: 103,
+      )
+    );
+  }
+
+  @include tablet-small {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include mobile {
+    @include spacer(margin, t, 2);
+    padding-left: 24px;
+    margin-top: 300px;
+    padding-right: 24px;
+  }
+
+  &_slider {
+    width: 100%;
+  }
+
+  .left {
+    display: none;
+
+    @include mobile {
+      display: block;
+      margin-top: -280px;
+      margin-bottom: 280px;
+      color: #0e3fb5;
+    }
+  }
+
+  &_list {
+    width: 100%;
+    margin-top: -480px;
+    padding-bottom: 0;
+    margin-bottom: 100px;
+
+    @include tablet {
+      margin-top: -400px;
+    }
+
+    @include mobile {
+      padding-bottom: 40px;
+      margin-top: -280px;
+      margin-bottom: 20px;
+    }
+
+    :global(.swiper-wrapper) {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 0.5px;
+      background: #ffffff;
+
+      > :first-child {
+        background: #f3f9ff;
+        border-color: #f3f9ff;
+        z-index: 2;
+
+        @include mobile {
+          display: none;
+        }
+      }
+
+      > * {
+        width: calc(33.33% + 0.75px);
+        min-height: 480px;
+        height: auto;
+        margin: -0.5px;
+        border: 1px solid #dce7f8;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: #ffffff;
+
+        @include tablet {
+          width: calc(50% + 0.75px);
+          min-height: 400px;
+        }
+
+        @include mobile {
+          width: 100%;
+          margin: 0;
+        }
+
+        :global {
+          .h3 {
+            color: #0e3fb5;
+          }
+
+          .h6 {
+            color: #11151d;
+            @include spacer(margin, b, 3 / 4);
+          }
+
+          p {
+            color: #888e9c;
+            font-size: 16px;
+          }
+        }
+
+        @include vw-property-big(
+          (
+            padding: 56,
+          )
+        );
+
+        @include laptop {
+          height: auto;
+          @include vw-property-big(
+            (
+              padding: 40,
+            )
+          );
+        }
+
+        @include mobile {
+          padding: 24px;
+        }
+      }
+
+      @include mobile {
+        flex-wrap: nowrap;
+        :global(.swiper-slide) {
+          height: auto;
+        }
+      }
+    }
+
+    :global(.swiper-pagination) {
+      display: none;
+
+      @include tablet {
+        display: flex;
+      }
+    }
+  }
+}

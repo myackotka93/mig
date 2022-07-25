@@ -1,0 +1,205 @@
+@import "@/styles/global/mixins";
+
+.Directions {
+  @include vw-property-big(
+    (
+      padding-left: 158,
+      padding-right: 152,
+    )
+  );
+
+  @include laptop {
+    @include vw-property-big(
+      (
+        padding-left: 75,
+        padding-right: 75,
+      )
+    );
+  }
+
+  position: relative;
+  z-index: 1;
+}
+
+.body {
+  background: #f3f9ff;
+  @include spacer(padding, x);
+  @include spacer(padding, y);
+  display: flex;
+
+  @include tablet {
+    flex-direction: column-reverse;
+    @include spacer(padding, x, 3 / 4);
+  }
+}
+
+.left {
+  min-width: 27.6%;
+  @include spacer(padding, x);
+  @include spacer(padding, b, 10 / 8);
+
+  > span {
+    color: color(gray);
+    @include spacer(margin, b, 3 / 8);
+    display: block;
+  }
+
+  .slider {
+    :global(.swiper-pagination) {
+      width: 96px;
+      left: 40px;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  .slide {
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  @include tablet {
+    @include spacer(padding, x, 0);
+  }
+
+  .left_next {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+}
+
+
+
+.right {
+  min-width: 72.4%;
+  @include spacer(padding, x);
+  @include spacer(padding, y, 2);
+  border-left: 1px solid rgba(17, 21, 29, 0.1);
+
+  @include tablet {
+    border-left: none;
+    @include spacer(padding, x, 0);
+    @include spacer(padding, y);
+  }
+
+  display: flex;
+  justify-content: space-between;
+
+  :global(.h3) {
+    @include spacer(margin, b, 5 / 4);
+  }
+
+  :global(.h7) {
+    @include spacer(margin, b, 3 / 4);
+  }
+
+  :global(p) {
+    color: color(gray);
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include vw-property(
+      (
+        width: 758,
+      )
+    );
+
+    @include laptop {
+      @include vw-property(
+        (
+          margin-bottom: 56,
+        )
+      );
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  .social {
+    &_buttons {
+      display: flex;
+      margin: 14px -4px 0;
+      
+      @include laptop {
+        margin: 0 -4px;
+      }
+
+      > * {
+        margin: 0 4px;
+      }
+    }
+
+    &_header {
+      color: #888E9C;
+      @include laptop {
+        margin-right: 14px;
+      }
+
+    }
+  }
+
+  @include laptop {
+    flex-direction: column;
+  }
+}
+
+.prev,
+.next {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  left: 136px;
+}
+
+.slide {
+  background-color: #f3f9ff;
+
+  img {
+    width: 200px;
+    @include vw-property(
+      (
+        width: 200,
+      )
+    );
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    @include font-size(14);
+    line-height: 166%;
+    @include spacer(margin, t, 1 / 2);
+    @include spacer(margin, b, 1);
+    display: block;
+  }
+}
+
+.socials {
+  @include laptop {
+    display: flex;
+    align-items: center;
+  }
+
+  @include tablet {
+    @include spacer(padding, y);
+    border-top: 1px solid #DADCE0;;
+    border-bottom: 1px solid #DADCE0;;
+  }
+}

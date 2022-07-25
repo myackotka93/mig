@@ -1,0 +1,199 @@
+@import "@/styles/global/mixins";
+
+.layout_haeding {
+  display: flex;
+  align-items: stretch;
+  @include spacer(margin, x, -1);
+  @include aspect-ratio(18, 5);
+  @include vw-property(
+    (
+      margin-bottom: 120,
+    )
+  );
+
+  @include tablet-small {
+    @include aspect-ratio(null);
+    margin: 0;
+  }
+
+  .body {
+    background-color: #f3f9ff;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    @include tablet-small {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.left {
+  width: 50%;
+  @include vw-property-big(
+    (
+      padding-left: 156,
+      padding-right: 48,
+    )
+  );
+
+  @include spacer(padding, t, 1.5);
+  @include spacer(padding, b, 0.5);
+
+  @include tablet-small {
+    width: 100%;
+    @include spacer(padding, x, 2);
+  }
+
+  @include mobile {
+    @include spacer(padding, x);
+  }
+}
+
+.img {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  object-fit: cover;
+
+  @include tablet-small {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  @include spacer(margin, b);
+}
+
+.vert_line {
+  width: 1px;
+  background-color: #888e9c;
+  height: 18px;
+  font-weight: 400;
+  margin: 0 8px 0;
+}
+
+.department {
+  color: #0e3fb5;
+  @include font-size(18, 12);
+}
+
+.date {
+  color: #888e9c;
+  @include font-size(18, 12);
+}
+
+.heading {
+  color: #11151d;
+  @include spacer(margin, b);
+}
+
+.post {
+  max-width: 598px;
+  width: 100%;
+  letter-spacing: -0.015em;
+  color: #888e9c;
+}
+
+.LayoutRight {
+  padding-top: 0;
+  // @include vw-property(
+  //   (
+  //     -right: 480,
+  //   )
+  // );
+
+  @include tablet-small {
+    @include spacer(padding, t, 2);
+  }
+
+  @include mobile {
+    @include spacer(padding, t, 1);
+  }
+
+  .text {
+    @include spacer(margin, b, 2);
+    @include vw-property(
+      (
+        width: 756,
+      )
+    );
+
+    @include laptop {
+      @include vw-property(
+        (
+          width: 856,
+        )
+      );
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+
+    img {
+      @include spacer(margin, b);
+    }
+  }
+}
+
+.LayoutLeft {
+  padding-top: 0;
+}
+
+.circle_group {
+  display: flex;
+  @include spacer(margin, b);
+}
+
+.circle_button {
+  @include spacer(margin, r, 1 / 4);
+}
+
+.button_news {
+  border: 1px solid #dadce0;
+  @include spacer(margin, b, 1 / 4);
+  @include spacer(margin, r, 1 / 4);
+}
+
+.still_news {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 130%;
+  letter-spacing: -0.03em;
+  color: #11151d;
+}
+
+.container_news {
+  > :last-child {
+    display: none;
+  }
+}
+
+.share {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: #888e9c;
+  @include spacer(margin, b, 14 / 32);
+}
+
+.layout_news {
+  padding-bottom: 0;
+}
+
+.layout_still {
+  padding-top: 0;
+}
+
+.video {
+  @include spacer(margin, t, 1 / 2);
+}

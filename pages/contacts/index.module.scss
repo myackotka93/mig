@@ -1,0 +1,151 @@
+@import "@/styles/global/mixins";
+
+.center_header {
+  @include vw-property-big(
+    (
+      padding-left: 158,
+    )
+  );
+
+  padding-top: vh(58);
+  padding-bottom: vh(58);
+  // padding-top: vh(58);
+  // padding-bottom: vh(125);
+
+  @include laptop {
+    @include vw-property(
+      (
+        padding-left: 103,
+      )
+    );
+  }
+
+  @include tablet {
+    padding-left: 32px;
+    width: 100%;
+  }
+
+  @include mobile {
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.heading_main {
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 4);
+  }
+}
+
+.text_main {
+  margin-bottom: 0;
+  font-weight: 400;
+  @include font-size(22, 18);
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: #11151d;
+}
+
+.layout_container {
+  display: flex;
+  width: 100%;
+
+  @include vw-property-big(
+    (
+      padding-left: 158,
+    )
+  );
+
+  @include laptop {
+    @include vw-property(
+      (
+        padding-left: 103,
+      )
+    );
+  }
+
+  @include tablet {
+    padding-left: 32px;
+    width: 100%;
+  }
+
+  @include mobile {
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.layout_block {
+  max-width: 442px;
+  width: 100%;
+  @include spacer(padding, r);
+
+  @include laptop {
+    max-width: 248px;
+  }
+
+  @include mobile {
+    @include spacer(margin, b);
+    max-width: none;
+  }
+}
+
+.layout_container {
+  display: flex;
+
+  > :last-child {
+    padding-right: 0;
+  }
+
+  padding-bottom: 115px;
+
+  @include mobile {
+    flex-direction: column;
+    @include spacer(padding, b, 1 / 2);
+  }
+}
+
+.layout {
+  width: 100%;
+}
+
+.layout_heading {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  color: #888e9c;
+  @include spacer(margin, b, 1 / 2);
+}
+
+.layout_contact {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: #11151d;
+  @include spacer(margin, b, 1 / 2);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.layout_text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: -0.03em;
+  color: #11151d;
+  @include spacer(margin, b, 1 / 4);
+}
+
+.layout_haeding {
+  @include spacer(padding, b, 1 / 4);
+  @include spacer(padding, t, 10 / 4);
+}

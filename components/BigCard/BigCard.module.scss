@@ -1,0 +1,112 @@
+@import "@/styles/global/mixins";
+
+.BigCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  width: 100%;
+  @include spacer(margin, b, 5 / 4);
+
+  @include mobile {
+    @include spacer(margin, b, 3 / 4);
+    object-fit: cover;
+    height: 201px;
+  }
+}
+
+.logo {
+  width: 32px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include spacer(margin, b, 5 / 4);
+
+  @include mobile {
+    order: 2;
+    margin-bottom: 0;
+  }
+}
+
+.vert_line {
+  width: 1px;
+  background-color: #888e9c;
+  height: 18px;
+  font-weight: 400;
+  margin: 0 8px 0;
+}
+
+.department {
+  color: #0e3fb5;
+  @include font-size(18, 14);
+}
+
+.date {
+  color: #888e9c;
+  @include font-size(18, 14);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+}
+
+.next {
+  display: none;
+
+  @include mobile {
+    display: flex;
+  }
+}
+
+.text {
+  font-weight: 500;
+  @include font-size(36, 18);
+  letter-spacing: -0.015em;
+  @include spacer(padding, b, 0.75);
+
+  @include mobile {
+    margin-bottom: 12px;
+    padding-bottom: 0;
+  }
+}
+
+.post {
+  font-weight: 400;
+  @include font-size(22, 14);
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: #888e9c;
+
+  @include spacer(margin, b, 10 / 40);
+}
+
+.Quote {
+  display: flex;
+
+  .description {
+    margin-left: 0;
+  }
+
+  @include mobile {
+    margin-bottom: 24px;
+  }
+}
+
+.none {
+  display: none;
+}
+
+.logo {
+  @include spacer(margin, r, 3 / 4);
+
+  @include mobile {
+    @include spacer(margin, r, 0);
+  }
+}

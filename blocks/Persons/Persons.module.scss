@@ -1,0 +1,80 @@
+@import "@/styles/global/mixins";
+
+.Persons {
+  display: flex;
+  background-color: rgba(14, 63, 181, 1);
+  color: #fff;
+  @include spacer(padding, y);
+  @include spacer(margin, t, -9);
+  position: relative;
+  z-index: 2;
+
+  @include laptop {
+    @include spacer(margin, t, -7);
+  }
+
+  @include tablet-small {
+    flex-direction: column;
+    margin-top: -100px;
+    @include spacer(padding, y, 0);
+  }
+
+  .info {
+    @include vw-property(
+      (
+        padding-right: 288,
+      )
+    );
+
+    @include tablet-small {
+      padding-right: 32px;
+    }
+
+    @include mobile {
+      padding-left: 24px;
+    }
+  }
+}
+
+.Layout {
+  padding-bottom: 0;
+}
+
+.text {
+  @include font-size(24, 16);
+  // @include spacer(margin, b);
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 2);
+  }
+}
+
+.name {
+  @include spacer(margin, b, 0.25);
+}
+
+.post {
+  @include font-size(18, 16);
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0;
+}
+
+.Layout {
+  padding-bottom: 0;
+}
+
+.left {
+  @include vw-property(
+    (
+      padding-left: 64,
+    )
+  );
+
+  @include tablet-small {
+    padding-left: 32px;
+  }
+
+  @include mobile {
+    @include spacer(padding, x, 3 / 4);
+  }
+}

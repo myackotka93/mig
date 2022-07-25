@@ -1,0 +1,51 @@
+@import "@/styles/global/mixins";
+
+.advantages {
+    display: flex;
+    
+    @include mobile {
+      flex-direction: column;
+    }
+  
+    &_left {
+      width: 55%;
+    }
+  
+    &_right {
+      margin-top:48px;
+      width: 45%;
+  
+      @include mobile {
+        margin-top: 0;
+      }
+    }
+  }
+  
+  .advantages_left {
+    width: 100%;
+  }
+  
+  .advantages_right {
+    width: 100%;
+  }
+
+  .additions {
+    display: flex;
+
+    > * {
+      @include spacer(margin, r);
+    }
+
+    > :last-child {
+      margin-right: 0;
+    }
+  }
+
+.info_wrapper {
+  @include spacer(margin, b, 10 / 8);
+}
+
+.info_list {
+  @include spacer(margin, b, 10 / 8);
+}
+

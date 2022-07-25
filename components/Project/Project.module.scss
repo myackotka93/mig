@@ -1,0 +1,41 @@
+@import "@/styles/global/mixins";
+
+.Project {
+  width: 100%;
+  background-color: rgba(14, 63, 181, 1);
+  @include spacer(padding, x);
+  @include spacer(padding, y, 2 / 1.33);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.Layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  @include font-size(36);
+  font-weight: 500;
+  @include spacer(padding, b);
+  @include spacer(padding, r, 2 / 1.36);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  @include spacer(margin, b, 2 / 1.6);
+  width: 100%;
+}
+
+.img {
+  width: 100%;
+  @include spacer(padding, b, 2 / 1.6);
+  flex: 1;
+  object-fit: contain;
+  object-position: center;
+}
+
+.Button {
+  @include button(174px, 48px, 0);
+  background-color: #ffffff;
+  color: rgba(14, 63, 181, 1);
+}

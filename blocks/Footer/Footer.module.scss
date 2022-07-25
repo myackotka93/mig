@@ -1,0 +1,213 @@
+@import "@/styles/global/mixins";
+
+.Footer {
+  background-color: #121b2d;
+  color: #ffffff;
+  display: flex;
+  margin-bottom: 32px;
+
+  @include mobile {
+    margin-bottom: 0;
+  }
+
+  .info {
+    padding-left: 0;
+    padding-bottom: 0;
+
+    @include mobile {
+      // @include spacer(padding, x, 3 / 4);
+      width: 100%;
+      // @include spacer(padding, t, 0);
+    }
+  }
+
+  .Layout {
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  .LayoutLeft {
+  }
+}
+
+.logo {
+  display: block;
+}
+
+.img {
+  max-width: 130px;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    max-width: 112px;
+    width: 100%;
+  }
+}
+
+.two_columns {
+  display: flex;
+  @include vw-property(
+    (
+      padding-bottom: 100,
+    )
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  @include tablet-small {
+    @include spacer(padding, b, 10 / 8);
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.column_heading {
+  width: 40%;
+  @include spacer(padding, l);
+
+  @include mobile {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+.column_heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.link_heading {
+  @include font-size(26);
+  @include spacer(margin, b, 0.75);
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+  line-height: 130%;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.directions_heading {
+  @include font-size(26);
+  @include spacer(margin, b, 0.75);
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 2);
+  }
+}
+
+.link_directions {
+  @include font-size(16);
+  line-height: 166%;
+  color: rgba(255, 255, 255, 0.6);
+  @include spacer(margin, b, 0.75);
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 2.28);
+  }
+}
+
+.column_directions {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts {
+  display: flex;
+  @include spacer(margin, t, 1.25);
+  @include spacer(padding, l);
+  @include spacer(padding, b, 1.44);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  @include mobile {
+    flex-direction: column;
+    padding-left: 0;
+    @include spacer(padding, b, 12 / 32);
+  }
+}
+
+.heading {
+  @include font-size(16);
+  @include spacer(margin, b, 0.25);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.telegram {
+  width: 21.1px;
+  height: 19.2px;
+  // margin-right: 17.46px;
+  @include spacer(margin, r, 0.545);
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.phone {
+  width: 40%;
+  @include font-size(18);
+}
+
+.email {
+  width: 38%;
+  @include font-size(18);
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.vk {
+  width: 24px;
+  height: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.text {
+  @include spacer(padding, t, 0.75);
+  @include spacer(padding, b, 0.75);
+  @include spacer(padding, l);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  @include font-size(14, 13);
+  letter-spacing: -0.015em;
+  margin-bottom: 0;
+  line-height: 166%;
+
+  @include mobile {
+    padding-left: 0;
+    @include spacer(padding, y, 10 / 8);
+  }
+}

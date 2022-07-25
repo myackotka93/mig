@@ -1,0 +1,66 @@
+@import "@/styles/global/mixins";
+
+.CardNews {
+  //  max-width: 422px;
+  width: 100%;
+  border: 1px solid #dadce0;
+  display: flex;
+  flex-direction: column;
+  @include spacer(padding);
+
+  @include laptop {
+    @include spacer(padding, all, 3 / 4);
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  @include spacer(margin, b, 1 / 1.45);
+}
+
+.vert_line {
+  width: 1px;
+  background-color: #888e9c;
+  height: 18px;
+  font-weight: 400;
+  margin: 0 8px 0;
+}
+
+.heading {
+  color: #0e3fb5;
+  @include font-size(18, 12);
+}
+
+.date {
+  color: #888e9c;
+  @include font-size(18, 12);
+}
+
+.news {
+  font-weight: 500;
+  @include font-size(22, 14);
+  @include spacer(margin, b, 1);
+  // height: 130px;
+
+  @include vw-property(
+    (
+      height: 130,
+    )
+  );
+}
+
+.img {
+  width: 100%;
+  position: relative;
+  @include aspect-ratio(18, 13);
+
+  img {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+}

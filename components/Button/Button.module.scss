@@ -1,0 +1,51 @@
+@import "@/styles/global/mixins";
+
+.Button {
+  // width: 200px;
+  @include spacer(padding, x, 3 / 4);
+  border-radius: 32px;
+  height: 56px;
+  background-color: color(blue);
+  color: #fff;
+  font-weight: 600;
+  @include font-size(16);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+
+  @include laptop {
+    height: 46px;
+  }
+
+  &:hover {
+  }
+
+  @include mobile {
+    height: 36px;
+    @include spacer(padding, x, 10 / 16);
+  }
+}
+
+.empty {
+  background-color: transparent;
+  border: 1px solid color(blue);
+  color: color(blue);
+  @include transition(color, background-color);
+
+  &:hover {
+    background-color: color(blue);
+    color: #fff;
+  }
+
+  &.active {
+    background-color: color(blue);
+    color: #fff;
+  }
+}
+
+.white {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: color(blue);
+}

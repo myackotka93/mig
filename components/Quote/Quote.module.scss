@@ -1,0 +1,33 @@
+@import "@/styles/global/mixins";
+
+.Quote {
+  display: flex;
+  align-items: flex-start;
+
+  @include mobile {
+  }
+
+  > svg {
+    @include vw-property(
+      (
+        width: 57,
+      )
+    );
+
+    height: auto;
+
+    @include mobile {
+      @include spacer(margin, b, 1 /2);
+    }
+  }
+
+  > div {
+    flex: 1;
+
+    @include spacer(margin, l, 3 / 4);
+
+    @include mobile {
+      @include spacer(margin, l, 0);
+    }
+  }
+}

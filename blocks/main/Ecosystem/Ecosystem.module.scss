@@ -1,0 +1,144 @@
+@import "@/styles/global/mixins";
+
+.Ecosystem {
+}
+
+.company {
+  &_right {
+    @include spacer(padding, y, 0);
+    display: flex;
+
+    @include mobile {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &_list {
+    width: 34%;
+    @include spacer(padding, l);
+    border-left: 1px solid rgba(#fff, 0.2);
+
+    @include mobile {
+      border-left: none;
+      width: 100%;
+      padding: 0;
+      @include spacer(padding, y, 1);
+    }
+
+    > * {
+      width: 100%;
+
+      @include mobile {
+        width: 50%;
+      }
+    }
+  }
+
+  .company_card {
+    @include spacer(padding, l);
+    @include spacer(padding, r, 2);
+    width: 66%;
+
+    @include vw-property(
+      (
+        padding-top: 88,
+      )
+    );
+
+    @include laptop {
+      @include spacer(padding, r, 1);
+      @include spacer(padding, l, 0);
+    }
+
+    @include mobile {
+      width: 100%;
+      padding-right: 0;
+      border-top: 1px solid rgba(#fff, 0.2);
+    }
+
+    :global(.h6) {
+      @include spacer(margin, b, 3 / 4);
+    }
+
+    &_divider {
+      @include laptop {
+        width: 100%;
+        @include spacer(margin, x, 0);
+      }
+    }
+
+    &_image {
+      @include spacer(margin, x, -1);
+      @include spacer(margin, b, 5 / 4);
+      max-width: calc(100% + $offsetMain * 2);
+      width: calc(100% + $offsetMain * 2);
+
+      @include laptop {
+        @include spacer(margin, x, 0);
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.company_tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+
+  .company_tag {
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 90px;
+    @include font-size(22, 14);
+    font-weight: 500;
+
+    @include laptop {
+      height: 72px;
+    }
+
+    svg {
+      margin-right: 10px;
+      height: 48px;
+      width: auto;
+
+      @include laptop {
+        height: 36px;
+      }
+
+      @include tablet {
+        height: 32px;
+      }
+    }
+
+    @include spacer(padding, x, 7 / 8);
+  }
+}
+
+.filter_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @include spacer(margin, t, 3);
+
+  > * {
+    @include spacer(margin, y, 1 / 4);
+  }
+
+  @include tablet-small {
+    flex-direction: row;
+    flex-wrap: wrap;
+    // overflow: auto;
+    margin: 0 -5px;
+    @include spacer(margin, t, 1);
+
+    > * {
+      margin: 5px;
+    }
+  }
+}

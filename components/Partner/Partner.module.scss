@@ -1,0 +1,39 @@
+@import "@/styles/global/mixins";
+
+.Partner {
+  @include spacer(padding, all, 6 / 4);
+  @include spacer(padding, b, 5 / 4);
+  border: 1px solid #dadce0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff;
+
+  @include laptop {
+    @include spacer(padding, all, 3 / 4);
+  }
+
+  p {
+    color: color(gray);
+    // font-size: 18px;
+    @include spacer(margin, t, 3 / 4);
+    margin-bottom: 0;
+  }
+}
+
+.logo {
+  width: 115px;
+
+  @include tablet-small {
+    @include spacer(margin, b, 3 / 4);
+  }
+}
+
+.Button {
+  @include spacer(margin, t, 3 / 4);
+  @include button(174px, 48px, 0);
+  background-color: #fff;
+  color: #0e3fb5;
+  border: 1px solid #dadce0;
+}

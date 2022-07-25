@@ -1,0 +1,24 @@
+@import "@/styles/global/mixins";
+
+.Equipment {
+  // max-width: 632px;
+  width: 100%;
+  background-color: #f3f9ff;
+  @include spacer(padding, t, 2 / 1.14);
+  @include spacer(padding, r, 6 / 1.066667);
+  @include spacer(padding, b, 2 / 1.28);
+  @include spacer(padding, l, 2 / 1.33);
+}
+
+.heading {
+  @include font-size(36);
+  color: #0e3fb5;
+  font-weight: 500;
+  @include spacer(padding, b, 2 / 1.39);
+}
+
+.img {
+  width: 100%;
+  object-fit: cover;
+  // mix-blend-mode: darken;
+}

@@ -1,0 +1,66 @@
+@import "nullstyle";
+@import "mixins";
+@import "fonts";
+
+@import "~swiper/css";
+@import "~swiper/css/autoplay";
+@import "~swiper/css/navigation";
+@import "~swiper/css/pagination";
+@import "~swiper/css/scrollbar";
+@import "~swiper/css/effect-fade";
+// @import "~overlayscrollbars/css/OverlayScrollbars.css";
+
+body {
+  font-family: "Inter";
+  font-size: 14px;
+  color: #11151d;
+  background-color: #f3f9ff;
+
+  > svg {
+    position: absolute;
+  }
+}
+
+.wrapper {
+  overflow: hidden;
+  @include spacer(padding, x, 7 / 8);
+  max-width: 2560px;
+  margin-inline: auto;
+  background-color: #fff;
+
+  @include laptop {
+    @include spacer(padding, x, 13 / 16);
+  }
+
+  @include tablet-small {
+    @include spacer(padding, x, 0);
+  }
+}
+
+.container {
+  @include spacer(padding, x);
+}
+
+.offset {
+  @include spacer(margin, b);
+}
+.big-offset {
+  @include spacer(margin, b, 2);
+}
+
+.error-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.image-next {
+  object-fit: cover;
+}

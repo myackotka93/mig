@@ -1,0 +1,31 @@
+@import '@/styles/global/mixins';
+
+.Example {
+  width: 100%;
+  position: relative;
+}
+
+.img {
+  object-fit: cover;
+  
+}
+
+.info_block {
+  max-width: 600px;
+  width: 100%;
+  background-color: rgba(14, 63, 181, 1);
+  @include spacer(padding, x);
+  @include spacer(padding, y, 6 / 4);
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  @include spacer(padding, b, 2);
+}

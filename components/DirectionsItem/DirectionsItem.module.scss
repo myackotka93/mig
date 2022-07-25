@@ -1,0 +1,45 @@
+@import "@/styles/global/mixins";
+
+.DirectionsItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: #0e3fb5;
+  height: 210px;
+  align-items: center;
+  position: relative;
+  @include spacer(padding, r, 15 / 8);
+  @include spacer(padding, l, 12 / 8);
+}
+
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.Button {
+  @include button(154px, 48px, 0);
+  background-color: #fff;
+  color: #0e3fb5;
+  border: 1px solid #dadce0;
+  width: auto;
+
+  position: relative;
+  z-index: 1;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin-bottom: 48px;
+
+  position: relative;
+  z-index: 1;
+}

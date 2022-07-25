@@ -1,0 +1,75 @@
+@import "@/styles/global/mixins";
+
+.MassMedia {
+  background-color: #0e3fb5;
+}
+
+.title {
+  font-weight: 500;
+  @include font-size(26, 20);
+  line-height: 130%;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+
+  @include mobile {
+  }
+}
+
+.heading {
+  // font-weight: 500;
+  // @include font-size(36, 22);
+  // line-height: 120%;
+  // letter-spacing: -0.03em;
+  color: #ffffff;
+  // margin-bottom: 44px;
+  // width: 100%;
+
+  @include spacer(margin, b);
+}
+
+.border {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0;
+  max-width: 758px;
+  width: 100%;
+}
+
+.Layout {
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+    @include spacer(padding, x, 1 / 2);
+    @include spacer(padding, b, 10 / 8);
+  }
+}
+
+.LayoutLeft {
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.LayoutRight {
+  @include mobile {
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+  }
+}
+
+.icons {
+  svg {
+    margin-bottom: 20px;
+    margin-right: 8px;
+  }
+}

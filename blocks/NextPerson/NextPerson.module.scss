@@ -1,0 +1,245 @@
+@import "@/styles/global/mixins";
+
+.NextPerson {
+  background-color: rgba(14, 63, 181, 1);
+  display: flex;
+  width: 100%;
+}
+
+.heading {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 130%;
+}
+
+.name {
+  font-weight: 500;
+  @include font-size(36, 26);
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  @include spacer(padding, b, 1 / 2);
+}
+
+.post {
+  font-weight: 400;
+  @include font-size(20, 16);
+  line-height: 166%;
+  color: rgba(255, 255, 255, 0.8);
+  @include spacer(padding, b, 1.5);
+
+  @include laptop {
+    @include spacer(padding, b, 3 / 4);
+  }
+
+  @include tablet {
+    @include spacer(padding, b, 0);
+  }
+}
+
+.button {
+  margin: 0;
+}
+
+.button_group {
+  display: flex;
+  align-items: center;
+
+  :global(p) {
+    margin: 0;
+  }
+}
+
+.text {
+  @include spacer(padding, l, 1 / 2.6);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.wrapper_column {
+  padding-right: 50%;
+
+  background-color: #0e3fb5;
+  overflow: hidden;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    order: 1;
+  }
+
+  @include vw-property(
+    (
+      padding-top: 120,
+      padding-bottom: 120,
+    )
+  );
+
+  @include laptop {
+    padding-right: 55%;
+  }
+
+  @include tablet {
+    @include vw-property(
+      (
+        padding-top: 80,
+        padding-bottom: 80,
+      )
+    );
+  }
+
+  @include tablet-small {
+    @include vw-property(
+      (
+        padding-top: 50,
+        padding-bottom: 50,
+      )
+    );
+  }
+
+  @include mobile {
+    padding: 0;
+    // padding-r/ight: 32px;
+  }
+}
+
+.img {
+  max-width: 45%;
+  object-fit: cover;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+
+  @include laptop {
+    max-width: 50%;
+  }
+
+  @include mobile {
+    position: static;
+    max-width: 100%;
+    height: auto;
+    order: 0;
+    margin-bottom: 24px;
+  }
+  // top: -$offsetMain * 15 / 4;
+  // height: calc(100% + $offsetMain * 30 / 4);
+
+  // @include spacer(margin, y, -15 / 4);
+}
+
+.Layout {
+  position: relative;
+
+  &Left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &Right {
+    @include vw-property(
+      (
+        margin-top: -32,
+        margin-bottom: -32,
+      )
+    );
+
+    padding: 0;
+    border: none;
+
+    @include tablet-small {
+      margin: 0;
+    }
+
+    @include mobile {
+      padding: 24px 0;
+      border-top: 1px solid rgba(#fff, 0.2);
+    }
+
+    .slider {
+      // overflow: visible;
+      margin: 0;
+      padding: 0;
+      padding-left: $offsetMain;
+
+      @include mobile {
+        padding-left: 0;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: $offsetMain;
+        bottom: $offsetMain;
+        width: 1px;
+        background: #ffffff;
+        opacity: 0.2;
+
+        @include tablet-small {
+          display: none;
+        }
+      }
+
+      :global(.swiper-wrapper) {
+        align-items: stretch;
+      }
+    }
+  }
+}
+
+.Layout {
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// .left {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+
+.LayoutLeft {
+  // @include laptop {
+  //   @include vw-property(
+  //     (
+  //       padding-left: 103,
+  //     )
+  //   );
+  // }
+}
+
+.prev,
+.next {
+  box-sizing: border-box;
+  border: 1px solid rgba(218, 220, 224, 0.3);
+  background-color: transparent;
+
+  svg path {
+    stroke: #fff;
+  }
+
+  &[disabled] {
+    svg path {
+      stroke: rgba(#fff, 0.5) !important;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+  margin-top: 32px;
+}

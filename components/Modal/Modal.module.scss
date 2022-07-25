@@ -1,0 +1,12 @@
+@import "@/styles/global/mixins";
+
+.Modal {
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  transform: translateX(100%);
+}
