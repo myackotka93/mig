@@ -15,8 +15,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     resize();
     window.addEventListener('resize', debounce(resize, 200));
-  }, [])
-
+  }, []);
   return (
     <>
       <Header />
@@ -24,7 +23,7 @@ function MyApp({ Component, pageProps }) {
       <div className="wrapper">
         <Component {...pageProps} />
         {/* <div className="offset"></div> */}
-        <Footer />
+        <Footer data={pageProps.footer} />
       </div>
     </>
   )

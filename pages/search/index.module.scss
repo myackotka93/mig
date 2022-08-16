@@ -1,0 +1,53 @@
+@import '@/styles/global/mixins';
+
+.title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: #888E9C;
+
+  @include tablet-small {
+    @include spacer(margin, b, 1 / 2);
+  }
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  color: #11151D;
+
+  @include tablet-small {
+    @include spacer(margin, b, 0);
+  }
+}
+
+.divider {
+  margin: 0;
+}
+
+.right {
+  border-left: none;
+
+  @include tablet-small {
+    border-top: none;
+  }
+}
+
+.search_news {
+    width: 50%;
+}
+
+.heading {
+  @include spacer(margin, b, 1 / 2);
+}
+
+.left_heading {
+  @include spacer(padding, b, 10 / 8);
+
+  @include tablet-small {
+    @include spacer(padding, b, 0);
+  }
+}

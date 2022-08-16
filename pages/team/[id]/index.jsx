@@ -23,38 +23,44 @@ function Team({ person = {}, data = [] }) {
         <Media className={styles.img} media={person.big_image ?? "/images/image_block.png"} />
       </div>
 
-
       <Layout>
         <div className={styles.info}>
           <Persons {...person} />
         </div>
       </Layout>
 
-      <Layout>
-        <LayoutLeft>
-          <div className="h6">Биография</div>
-        </LayoutLeft>
-        <LayoutRight right>
-          <div className={styles.container}>
-            {HtmlParser(typograf(person.biography))}
+
+      {person.active_biography === 1 && (
+        <>
+          <Layout>
+            <LayoutLeft>
+              <div className="h6">Биография</div>
+            </LayoutLeft>
+            <LayoutRight right>
+              <div className={styles.container}>
+                {HtmlParser(typograf(person.biography))}
+              </div>
+            </LayoutRight>
+          </Layout>
+          <div className={classNames("container", styles.divider_main)}>
+            <Divider />
           </div>
-        </LayoutRight>
-      </Layout>
-      <div className={classNames("container", styles.divider_main)}>
-        <Divider />
-      </div>
-      <Layout>
-        <LayoutLeft>
-          <div className="h6">Достижения</div>
-        </LayoutLeft>
-        <LayoutRight right>
-          <div className={styles.container}>
-            <ul>
-              {HtmlParser(typograf(person.achievements))}
-            </ul>
-          </div>
-        </LayoutRight>
-      </Layout>
+        </>
+      )}
+      {person.active_achievements === 1 && (
+        <Layout>
+          <LayoutLeft>
+            <div className="h6">Достижения</div>
+          </LayoutLeft>
+          <LayoutRight right>
+            <div className={styles.container}>
+              <ul>
+                {HtmlParser(typograf(person.achievements))}
+              </ul>
+            </div>
+          </LayoutRight>
+        </Layout>
+      )}
       <NextPerson team={data} currentPersonId={person.id} />
       <div className="offset"></div>
     </>
@@ -67,19 +73,22 @@ export async function getStaticPaths(ctx) {
   const res = await fetcher('api/team/all', ctx);
 
   return {
-    paths: res.data.filter(person => person.big_image).map(person => ({ params: { id: String(person.id) } })),
+    paths: res.data.filter(person => person.active_page).map(person => ({ params: { id: String(person.id) } })),
     fallback: 'blocking'
   };
 }
 
 
 export async function getStaticProps(ctx) {
-  const res = await fetcher('api/team/' + ctx.params.id, ctx);
-
+  const [footer, res] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+    fetcher('api/team/' + ctx.params.id, ctx)
+  ]);
+  
   const { data, ...person } = res;
 
-  if (data && person) {
-    return { props: { person, data }, revalidate: 10 }
+  if (data && person && person.active) {
+    return { props: { person, data, footer: footer.attributes }, revalidate: 10 }
   }
 
   return {

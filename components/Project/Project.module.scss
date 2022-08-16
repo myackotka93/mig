@@ -9,6 +9,11 @@
   flex-direction: column;
   align-items: flex-start;
   color: #ffffff;
+
+  @include tablet-small {
+    @include spacer(padding, x, 3 / 4);
+    @include spacer(padding, y, 3 / 4);
+  }
 }
 
 .Layout {
@@ -17,25 +22,63 @@
 }
 
 .heading {
-  @include font-size(36);
+  @include font-size(36, 22);
   font-weight: 500;
-  @include spacer(padding, b);
+  // @include spacer(padding, b);
   @include spacer(padding, r, 2 / 1.36);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  @include spacer(margin, b, 2 / 1.6);
+  // border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  @include spacer(margin, b, 1 / 2);
   width: 100%;
+  // margin-bottom: 0;
+
+  @include tablet-small {
+    @include spacer(padding, b, 1 / 2);
+    // @include spacer(margin, b, 1 / 2);
+  }
+}
+
+.divider {
+  width: 100%;
+  @include spacer(margin, x, 0);
 }
 
 .img {
   width: 100%;
-  @include spacer(padding, b, 2 / 1.6);
+  @include spacer(margin, b, 2 / 1.6);
   flex: 1;
   object-fit: contain;
   object-position: center;
+
+  @include tablet-small {
+    @include spacer(margin, b, 3 / 4);
+  }
 }
 
 .Button {
   @include button(174px, 48px, 0);
   background-color: #ffffff;
   color: rgba(14, 63, 181, 1);
+}
+
+.text {
+  flex: 1;
+}
+
+.white {
+  background: #fff;
+  color: rgba(14, 63, 181, 1);
+  border: 1px solid rgba(17, 21, 29, 0.2);
+
+  .Button {
+    background-color: rgba(14, 63, 181, 1);
+    color: #fff;
+  }
+
+  .text {
+    color: #11151d;
+  }
+
+  .divider {
+    border-color: rgba(17, 21, 29, 0.2);
+  }
 }

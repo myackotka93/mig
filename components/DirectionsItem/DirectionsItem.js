@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import styles from './DirectionsItem.module.scss';
 import Button from '@/components/Button/Button';
 
-function DirectionsItem({ img, title = 'Лучевая терапия', className, onClick }) {
+function DirectionsItem({ img, title = 'Лучевая терапия', className, onClick, link }) {
   return (
     <div className={classNames(styles.DirectionsItem, className)}>
       {img && <img className={styles.image} src={img} alt={title} />}
       <h3 className={styles.heading}>{title}</h3>
-      <Button onClick={onClick} className={styles.Button}>Узнать больше</Button>
+      <Button onClick={onClick} link={link} className={styles.Button}>Узнать больше</Button>
     </div>
   )
 }

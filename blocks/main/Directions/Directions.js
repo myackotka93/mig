@@ -10,7 +10,17 @@ import Button from '@/components/Button/Button';
 import useSwiperBreakpoint from 'hooks/useSwiperBreakpoint';
 import LayoutLeft from '@/layouts/LayoutLeft/LayoutLeft';
 
-function Directions() {
+const directions = {
+  'gchp': 'Государственно-частное партнерство',
+  'mig': 'Клиники МИГ',
+  'oncology': 'Онкологический кластер',
+  'center': 'Центры ядерной медицины и лучевой терапии',
+  'radio': 'Радиофармацевтическое производство',
+  'laboratory': 'Лабораторная диагностика',
+  'carier': 'Карьера',
+}
+
+function Directions({...attributes}) {
   const swiper = useSwiperBreakpoint('(min-width:750px)');
 
   return (
@@ -38,13 +48,13 @@ function Directions() {
         <Slider.Slide>
           <div className="h3">Направления <br /> МИГ</div>
         </Slider.Slide>
-        {DIRECTIONS.map((direction, index) => (
-          <Slider.Slide key={index}>
+        {Object.keys(directions).filter(key => attributes[`direction_active_${key}`]).map((key) => (
+          <Slider.Slide key={key}>
             <div>
-              <div className="h6">{direction.name}</div>
-              <p>{typograf(direction.text)}</p>
+              <div className="h6">{attributes[`direction_title_${key}`]}</div>
+              <p>{typograf(attributes[`direction_text_${key}`])}</p>
             </div>
-            <Button link={direction.link} empty>Узнать больше</Button>
+            <Button link={`/directions/${key}`} empty>Узнать больше</Button>
           </Slider.Slide>
         ))}
       </Slider>

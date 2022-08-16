@@ -1,0 +1,33 @@
+@import '@/styles/global/mixins';
+
+.SearchTeam {
+  width: 100%;
+  border: 1px solid #DADCE0;
+  @include spacer(padding, x, 1);
+  @include spacer(padding, t, 1);
+  @include spacer(padding, b, 3 / 2);
+}
+  
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  color: rgba(17, 21, 29, 0.8);
+  @include spacer(margin, b, 10 / 8);
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 136%;
+  letter-spacing: -0.03em;
+  color: #11151D;
+  @include spacer(margin, b, 1 / 2);
+}
+
+.button {
+background-color: #fff;
+color: #0E3FB5;
+border: 1.5px solid #DADCE0;
+}

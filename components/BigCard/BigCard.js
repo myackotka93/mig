@@ -6,21 +6,20 @@ import Quote from '@/components/Quote/Quote';
 import Icon from '@/components/Icon/Icon';
 import ButtonCircle from '../ButtonCircle/ButtonCircle';
 
-function BigCard({ className, category, date, logo, link = "", name = "marks", img = "/images/president.png",
-  text = "«МедИнвестГрупп» помогает государству расширить возможности лечения различных видов онкологических заболеваний",
-  post = "Президент «МедИнвестГрупп» Сергей Нотов" }) {
+function BigCard({ className, category, date, slug, logo, link = "", icon = "marks", image_big ,
+  name, info }) {
   return (
     <div className={styles.BigCard}>
-      {link ? <a href={link} target="_blank" rel="noreferrer">
-        <img className={styles.img} src={img} alt="" />
-      </a> : <img className={styles.img} src={img} alt="" />}
+      {slug ? <a href={'/press-center/' + slug}  rel="noreferrer">
+        <img className={styles.img} src={image_big} alt="" />
+      </a> : <img className={styles.img} src={image_big} alt="" />}
 
 
-      {category && date && <div className={styles.wrapper}>
+      {category?.name && date && <div className={styles.wrapper}>
         <div className={styles.footer}>
-          <div className={styles.department}>{category}</div>
+          <div className={styles.department}>{category.name}</div>
           <div className={styles.vert_line}></div>
-          <div className={styles.date}>{date}</div>
+          <div className={styles.date}>{new Date(date).toLocaleDateString()}</div>
         </div>
 
         <ButtonCircle link={link} target="_blank" className={classNames(styles.next)}>
@@ -29,10 +28,10 @@ function BigCard({ className, category, date, logo, link = "", name = "marks", i
       </div>}
 
       <Quote className={classNames(styles.Quote, className)}>
-        {logo ? <Icon name={name} className={styles.logo} /> : <div className={styles.none}></div>}
+        {logo ? <Icon name={icon} className={styles.logo} /> : <div className={styles.none}></div>}
         <div className={styles.description}>
-          <div className={styles.text}>{text}</div>
-          <p className={styles.post}>{post}</p>
+          <div className={styles.text}>{name}</div>
+          <p className={styles.post}>{info}</p>
         </div>
       </Quote>
     </div>

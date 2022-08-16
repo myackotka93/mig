@@ -1,44 +1,72 @@
 @import "@/styles/global/mixins";
 
 .Directions {
-  @include vw-property-big(
-    (
-      padding-left: 158,
-      padding-right: 152,
-    )
-  );
+  // @include vw-property-big(
+  //   (
+  //     padding-left: 158,
+  //     padding-right: 152,
+  //   )
+  // );
 
-  @include laptop {
-    @include vw-property-big(
-      (
-        padding-left: 75,
-        padding-right: 75,
-      )
-    );
-  }
+  // @include laptop {
+  //   @include vw-property-big(
+  //     (
+  //       padding-left: 75,
+  //       padding-right: 75,
+  //     )
+  //   );
+  // }
 
   position: relative;
   z-index: 1;
+  // background: #f3f9ff;
 }
 
 .body {
   background: #f3f9ff;
-  @include spacer(padding, x);
-  @include spacer(padding, y);
+  // @include spacer(padding, x);
+  // @include spacer(padding, y);
   display: flex;
+  height: 100%;
+  width: calc(100% + 34px);
+  justify-content: space-between;
+  @include spacer(margin, l, -1);
+  @include spacer(padding);
+
+  &.column {
+    justify-content: flex-start;
+    flex-direction: column;
+    @include spacer(margin, l, 0);
+    @include spacer(margin, r, -1);
+    @include spacer(padding, x, 2);
+    @include spacer(padding, y, 3);
+
+    @include laptop {
+      @include spacer(padding, r, 1);
+    }
+    
+    @include tablet {
+      @include spacer(padding, x, 3 / 4);
+      @include spacer(padding, t, 0);
+      @include spacer(padding, b, 10 / 5);
+    }
+
+  }
 
   @include tablet {
-    flex-direction: column-reverse;
     @include spacer(padding, x, 3 / 4);
+    margin-left: 0;
+    width: 100%;
   }
 }
 
 .left {
-  min-width: 27.6%;
-  @include spacer(padding, x);
-  @include spacer(padding, b, 10 / 8);
+  // min-width: 27.6%;
+  // @include spacer(padding, x);
+  // @include spacer(padding, b, 10 / 8);
+  @include spacer(padding, y, 0);
 
-  > span {
+  >span {
     color: color(gray);
     @include spacer(margin, b, 3 / 8);
     display: block;
@@ -61,6 +89,7 @@
 
   @include tablet {
     @include spacer(padding, x, 0);
+    width: 100%;
   }
 
   .left_next {
@@ -69,18 +98,32 @@
   }
 }
 
-
-
-.right {
-  min-width: 72.4%;
-  @include spacer(padding, x);
+.border {
+  @include spacer(margin, l, -1);
+  @include spacer(padding, l);
   @include spacer(padding, y, 2);
   border-left: 1px solid rgba(17, 21, 29, 0.1);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 
   @include tablet {
+    flex-direction: column;
     border-left: none;
+    @include spacer(margin, l,0);
+    @include spacer(padding, l, 0);
+    @include spacer(padding, t, 10 / 8);
+    @include spacer(padding, b, 0);
+
+  }
+}
+
+.right {
+  border-left: none;
+  @include spacer(padding, y, 0);
+  @include tablet {
+    width: 100%;
     @include spacer(padding, x, 0);
-    @include spacer(padding, y);
   }
 
   display: flex;
@@ -103,18 +146,12 @@
     flex-direction: column;
     align-items: flex-start;
 
-    @include vw-property(
-      (
-        width: 758,
-      )
-    );
+    @include vw-property((width: 758,
+      ));
 
     @include laptop {
-      @include vw-property(
-        (
-          margin-bottom: 56,
-        )
-      );
+      @include vw-property((margin-bottom: 56,
+        ));
     }
 
     @include tablet {
@@ -126,18 +163,19 @@
     &_buttons {
       display: flex;
       margin: 14px -4px 0;
-      
-      @include laptop {
+
+      @include tablet {
         margin: 0 -4px;
       }
 
-      > * {
+      >* {
         margin: 0 4px;
       }
     }
 
     &_header {
       color: #888E9C;
+
       @include laptop {
         margin-right: 14px;
       }
@@ -170,11 +208,8 @@
 
   img {
     width: 200px;
-    @include vw-property(
-      (
-        width: 200,
-      )
-    );
+    @include vw-property((width: 200,
+      ));
 
     @include tablet {
       width: 100%;
@@ -192,14 +227,23 @@
 }
 
 .socials {
-  @include laptop {
+  @include tablet {
     display: flex;
     align-items: center;
   }
 
   @include tablet {
     @include spacer(padding, y);
-    border-top: 1px solid #DADCE0;;
-    border-bottom: 1px solid #DADCE0;;
+    border-top: 1px solid #DADCE0;
+    ;
+    border-bottom: 1px solid #DADCE0;
+    ;
   }
+}
+
+.Layout {
+ @include tablet {
+  display: flex;
+  flex-direction: column-reverse;
+ } 
 }

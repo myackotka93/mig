@@ -8,7 +8,7 @@ import NewsStill from '@/components/NewsStill/NewsStill';
 import LayoutRight from '@/layouts/LayoutRight/LayoutRight';
 import Divider from '@/components/Divider/Divider';
 
-function NewsEvents({ news }) {
+function NewsEvents({ news = [] }) {
   return (
     <Layout className={styles.NewsEvents}>
       <LayoutLeft>
@@ -19,8 +19,8 @@ function NewsEvents({ news }) {
       </LayoutLeft>
       <LayoutRight right className={styles.right}>
         {
-          news.map((n, index) => (
-            <React.Fragment key={index}>
+          news?.map((n, index) => (
+            <React.Fragment key={n.id}>
               <NewsStill {...n}></NewsStill>
               <Divider></Divider>
             </React.Fragment>

@@ -7,7 +7,10 @@
 
 .img {
   object-fit: cover;
-  
+
+  @include tablet-small {
+    height: 350px;
+  }
 }
 
 .info_block {
@@ -19,6 +22,11 @@
   position: absolute;
   bottom: 48px;
   left: 48px;
+
+  @include tablet-small {
+    position: static;
+    max-width: none;
+  }
 }
 
 .text {
@@ -28,4 +36,8 @@
   letter-spacing: -0.03em;
   color: #FFFFFF;
   @include spacer(padding, b, 2);
+
+  @include tablet-small {
+    @include spacer(padding, b, 3 / 4);
+  }
 }

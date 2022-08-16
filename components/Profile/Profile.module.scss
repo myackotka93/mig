@@ -13,7 +13,7 @@
 .heading {
   @include font-size(26);
   font-weight: 500;
-  @include spacer(padding, b, 1 / 4);
+  @include spacer(margin, b, 1 / 4);
 }
 
 .post {
@@ -23,8 +23,6 @@
 }
 
 .wrapper {
-  @include spacer(padding, l, 1 / 1.33);
-
   p {
     margin-bottom: 0;
   }

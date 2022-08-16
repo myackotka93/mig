@@ -1,0 +1,63 @@
+@import "@/styles/global/mixins";
+
+.search {
+  width: 100%;
+  @include height(100);
+  position: fixed;
+  z-index: 19999999;
+  background: rgba(255, 255, 255, 0.9);
+  top: 0;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.3s ease;
+
+  &_close {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+  }
+
+  .input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+      font-weight: 500;
+      @include font-size(22, 18);
+      color: #888e9c;
+      display: block;
+      @include spacer(margin, t);
+    }
+
+    input {
+      @include font-size(70, 36);
+      line-height: 100%;
+
+      width: 100%;
+      background-color: transparent;
+      border-bottom: 1px solid rgba(17, 21, 29, 0.2);
+      @include spacer(padding, y, 1 / 2);
+      font-weight: 600;
+
+      @include placeholder {
+        color: #11151d;
+        opacity: 1;
+      }
+    }
+
+    @include vw-property(
+      (
+        width: 910,
+      )
+    );
+  }
+}
+
+.open {
+  opacity: 1;
+  pointer-events: all;
+}

@@ -5,24 +5,24 @@ import styles from './CardNews.module.scss';
 import typograf from '@/utils/typograf';
 import Link from 'next/link';
 
-function CardNews({ title, text, image, date, link }) {
+function CardNews({ name, category, image_preview, date, slug }) {
   return (
     <div className={styles.CardNews}>
       <div className={styles.wrapper}>
-        <div className={styles.heading}>{title}</div>
+        <div className={styles.heading}>{category?.name}</div>
         <div className={styles.vert_line}></div>
-        <div className={styles.date}>{date}</div>
+        <div className={styles.date}>{new Date(date).toLocaleDateString()}</div>
       </div>
 
-      <Link href={link}>
-        <a target="_blank">
-          <p className={styles.news}>{typograf(text)}</p>
+      <Link href={'/press-center/' + slug}>
+        <a className={styles.name}>
+          <span className={styles.news}>{typograf(name)}</span>
         </a>
       </Link>
       <div className={styles.img}>
-        <Link href={link}>
-          <a target="_blank">
-            <img src={image} alt="" />
+        <Link href={'/press-center/' + slug}>
+          <a>
+            <img src={image_preview} alt="" />
           </a>
         </Link>
       </div>

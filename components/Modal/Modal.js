@@ -54,7 +54,8 @@ function Modal({ isOpen, children, onClose }) {
           <path d="M12 12L36 36M12 36L36 12L12 36Z" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button> */}
-      {children.map((c, index) => clone(c, index))}
+      {children}
+      {/* {children.map((c, index) => clone(c, index))} */}
     </ReactModal>
   )
 }

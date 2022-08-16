@@ -1,0 +1,50 @@
+@import "@/styles/global/mixins";
+
+.CardService {
+  width: 100%;
+  background-color: #0e3fb5;
+  @include spacer(padding, x);
+  @include spacer(padding, y, 2 / 1.33);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+  position: relative;
+  flex: 1;
+  @include spacer(margin, b);
+
+  @include tablet-small {
+    @include spacer(padding, x, 3 / 4);
+    @include spacer(padding, y, 5 / 4);
+  }
+
+  @include mobile {
+    @include spacer(padding, y, 3 / 4);
+    @include spacer(padding, x, 1 / 2);
+    @include spacer(margin, b, 1 / 2);
+  }
+
+  li {
+    &::before {
+      background: #fff;
+    }
+  }
+}
+
+.heading {
+  @include spacer(margin, b);
+}
+
+.list {
+  .item {
+  }
+}
+
+.img {
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%) rotate(90deg);
+  position: absolute;
+  right: -8px;
+  top: 50%;
+}

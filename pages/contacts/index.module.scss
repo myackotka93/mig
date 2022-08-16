@@ -33,7 +33,6 @@
 }
 
 .heading_main {
-
   @include mobile {
     @include spacer(margin, b, 1 / 4);
   }
@@ -148,4 +147,28 @@
 .layout_haeding {
   @include spacer(padding, b, 1 / 4);
   @include spacer(padding, t, 10 / 4);
+}
+
+.map {
+  @include aspect-ratio(20, 6);
+  position: relative;
+
+  @include tablet {
+    @include aspect-ratio(10, 6);
+  }
+
+  @include mobile {
+    @include aspect-ratio(6, 6);
+  }
+
+  &_iframe {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-filter: grayscale(100%);
+
+    // ymaps {
+    // }
+  }
 }

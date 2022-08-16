@@ -11,6 +11,24 @@
     @include spacer(margin, x, 1 / 2);
     @include spacer(margin, b, 1);
     width: calc(50% - $offsetMain);
+
+    @include tablet {
+      flex-direction: column;
+      width: calc(100% - $offsetMain);
+      @include spacer(margin, x, 0);
+    }
+  }
+
+  @include tablet-small {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+}
+
+.project {
+  @include tablet {
+    min-width: 85%;
+    margin-right: 16px;
   }
 }
 
@@ -26,4 +44,8 @@
       )
     );
   }
+}
+
+.divider {
+  margin: 0;
 }

@@ -13,13 +13,13 @@ export default async function handler(req, res) {
 
     res.json({ revalidated: true });
 
-    await Promise.all([
-      res.revalidate('/'),
-      res.revalidate('/team')
-    ]);
+    // await Promise.all([
+    //   res.revalidate('/'),
+    //   res.revalidate('/team')
+    // ]);
 
-    const team = JSON.parse(req.query.team ?? '[]') ?? [];
-    await Promise.all(team.map(p => res.revalidate('/team/' + p.id)));
+    // const team = JSON.parse(req.query.team ?? '[]') ?? [];
+    // await Promise.all(team.map(p => res.revalidate('/team/' + p.id)));
 
     // await res.revalidate('/team/[id]');
 

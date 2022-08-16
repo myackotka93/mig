@@ -23,7 +23,7 @@ function Team({ data }) {
             <Layout className={styles.Layout}>
               <LayoutLeft className={styles.left}></LayoutLeft>
               <LayoutRight className={styles.right}>
-                {items.map(person => {
+                {items.filter(person => person.active).map(person => {
                   return (
                     <React.Fragment key={person.id}>
                       <Person {...person} />
@@ -46,15 +46,10 @@ function Team({ data }) {
 export default Team;
 
 export async function getStaticProps(ctx) {
-  const team = await fetcher('api/team', ctx);
-  // const maps = await fetcher('api/maps', ctx);
-
-  console.log('get team')
-
-  // const [team, maps] = await Promise.all([
-  //   fetcher('api/team', ctx),
-  //   fetcher('api/maps', ctx)
-  // ])
-
-  return { props: { ...team } }
+  const [footer, team] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+    fetcher('api/team', ctx)
+  ]);
+  
+  return { props: { ...team, footer: footer.attributes }, revalidate: 10 }
 }

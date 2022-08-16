@@ -1,6 +1,8 @@
 @import "@/styles/global/mixins";
 
 .IconPlan {
+  display: flex;
+  flex-direction: column;
   position: relative;
   z-index: 2;
 
@@ -9,9 +11,15 @@
       width: 282,
     )
   );
+
+  @include tablet-small {
+    flex-direction: row;
+    width: 100%;
+  }
 }
 
 .container {
+  flex-shrink: 0;
   width: 72px;
   height: 72px;
   border-radius: 50%;
@@ -21,6 +29,16 @@
   justify-content: center;
   position: static;
   background-color: rgba(238, 239, 240, 1);
+
+  svg {
+    width: 60%;
+    height: auto;
+  }
+
+  @include tablet-small {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 // .bottom {
@@ -30,6 +48,11 @@
 .InfoPlan {
   position: absolute;
   left: 0;
+
+  @include tablet-small {
+    position: static;
+    @include spacer(padding, l, 1);
+  }
 }
 
 .top {
@@ -38,4 +61,8 @@
 
 .bottom {
   top: 108px;
+}
+
+.Icon {
+  width: 60%;
 }

@@ -1,0 +1,176 @@
+@import "@/styles/global/mixins";
+
+.advantages {
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &_left {
+    width: 55%;
+  }
+
+  &_right {
+    margin-top: 48px;
+    width: 45%;
+
+    @include mobile {
+      margin-top: 0;
+    }
+  }
+}
+
+.project {
+  min-width: auto;
+}
+
+.advantages_left {
+  width: 100%;
+}
+
+.advantages_right {
+  width: 100%;
+}
+
+.projects {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(50% - $offsetMain);
+
+    @include tablet {
+      flex-direction: column;
+      width: calc(100% - $offsetMain);
+      @include spacer(margin, x, 0);
+    }
+  }
+}
+
+.cards {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  @include tablet-small {
+    // flex-direction: column;
+    @include spacer(margin, r, -1 / 2);
+    // @include spacer(margin, x, 0);
+  }
+
+  @include mobile {
+    @include spacer(margin, x, -1 / 4);
+  }
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(25% - $offsetMain);
+
+    @include tablet {
+      // flex-direction: column;
+      width: calc(33.33% - $offsetMain);
+      // @include spacer(margin, x, 0);
+    }
+
+    @include mobile {
+      @include spacer(margin, x, 1 / 4);
+      width: calc(50% - $offsetMain / 2);
+      @include spacer(margin, b, 1 / 2);
+    }
+  }
+}
+
+.progress_wrapper {
+  color: #888e9c;
+  @include spacer(margin, t);
+}
+
+.info {
+  border-left: 0;
+}
+
+.info_heading {
+  @include spacer(margin, b);
+}
+
+.info_wrapper {
+  color: #888e9c;
+  line-height: 166%;
+  letter-spacing: -0.015em;
+  @include vw-property(
+    (
+      max-width: 758,
+    )
+  );
+}
+
+.slide_text {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  width: 100%;
+  flex: 1;
+
+  @include vw-property(
+    (
+      max-width: 600,
+    )
+  );
+
+  @include laptop {
+    max-width: 700px;
+  }
+
+  @include tablet {
+    position: static;
+    max-width: none;
+  }
+
+  :global(h5) {
+    border-bottom: none;
+    margin: 0;
+  }
+
+  &_footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    @include spacer(padding, t, 2 / 2);
+    @include spacer(margin, t, 1 / 2);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+    span {
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.prev,
+.next {
+  position: relative;
+}
+
+.title {
+  @include font-size(36, 26);
+}
+
+.slider {
+  :global(.swiper-slide) {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

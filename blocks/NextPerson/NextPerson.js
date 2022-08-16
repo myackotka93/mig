@@ -39,8 +39,8 @@ function NextPerson({ title = 'Наша команда', currentPersonId, team =
               <Slider.Slide key={id} className={styles.wrapper_column}>
                 <div className={styles.name}>{person.name}</div>
                 <p className={styles.post}>{HtmlParser(typograf(person.info))}</p>
-                {
-                  person.biography ? <Link href={"/team/" + person.id}>
+                {person.active_page === 1 && (
+                  <Link href={"/team/" + person.id}>
                     <a className={styles.button_group}>
                       <ButtonCircle empty className={styles.button}>
                         <Icon name="vector" />
@@ -49,15 +49,8 @@ function NextPerson({ title = 'Наша команда', currentPersonId, team =
                         Узнать больше
                       </span>
                     </a>
-                  </Link> : <span className={styles.button_group}>
-                    <ButtonCircle empty className={styles.button}>
-                      <Icon name="vector" />
-                    </ButtonCircle>
-                    <span className={styles.text}>
-                      Узнать больше
-                    </span>
-                  </span>
-                }
+                  </Link>
+                )}
                 <img className={styles.img} src={person.small_image} alt="" />
               </Slider.Slide>
             ))}

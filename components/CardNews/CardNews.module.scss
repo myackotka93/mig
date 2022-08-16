@@ -2,6 +2,7 @@
 
 .CardNews {
   //  max-width: 422px;
+  height: 100%;
   width: 100%;
   border: 1px solid #dadce0;
   display: flex;
@@ -39,15 +40,22 @@
 
 .news {
   font-weight: 500;
-  @include font-size(22, 14);
+  @include font-size(20, 14);
   @include spacer(margin, b, 1);
   // height: 130px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
 
-  @include vw-property(
-    (
-      height: 130,
-    )
-  );
+.name {
+  flex: 1;
+  // @include vw-property(
+  //   (
+  //     height: 100,
+  //   )
+  // );
 }
 
 .img {

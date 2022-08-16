@@ -6,6 +6,8 @@
 }
 
 .img {
-  
+ @include mobile {
   object-fit: cover;
+  height: 350px;
+ }
 }

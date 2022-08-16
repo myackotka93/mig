@@ -9,12 +9,37 @@ import Button from '@/components/Button/Button';
 import React, { useState } from 'react'
 import NewsStill from '@/components/NewsStill/NewsStill';
 import BigCard from '@/components/BigCard/BigCard';
+import fetcher from '@/utils/fetcher';
+import axios from 'axios';
 
-export default function Home() {
-  const [activeButtonNews, setActiveButtonNews] = useState('pet');
+export default function Home({ news, categories }) {
+  const [activeButtonNews, setActiveButtonNews] = useState(0);
+  const [newsData, setNewsData] = useState(news.data);
+  const [newsLinks, setNewsLinks] = useState(news.links);
 
   function handleNewsToggle(type) {
     setActiveButtonNews(type);
+    loadNews(news.meta.path + '?category=' + type);
+  }
+
+  function loadMore() {
+    if (!newsLinks.next) {
+      return;
+    }
+
+    loadNews(newsLinks.next + '&category=' + activeButtonNews, true);
+  }
+
+  function loadNews(url, isAdd) {
+    axios.get(url)
+      .then(({ data }) => {
+        if (isAdd) {
+          setNewsData(news => [...news, ...data.data])
+        } else {
+          setNewsData(data.data)
+        }
+        setNewsLinks(data.links);
+      })
   }
 
   return (
@@ -29,8 +54,24 @@ export default function Home() {
       <Layout className={styles.layout_press}>
         <LayoutLeft className={styles.LayoutLeft}>
           <div className={styles.filter_buttons}>
-            {PRESS_BUTTON?.map((button, index) => (
-              <Button className={styles.button_press} empty key={index} active={activeButtonNews === button.type} onClick={() => handleNewsToggle(button.type)}>{button.button}</Button>
+            <Button
+              className={styles.button_press}
+              empty
+              active={activeButtonNews === 0}
+              onClick={() => handleNewsToggle(0)}
+            >
+              Все
+            </Button>
+            {categories?.map((button, index) => (
+              <Button
+                className={styles.button_press}
+                empty
+                key={button.id}
+                active={activeButtonNews === button.id}
+                onClick={() => handleNewsToggle(button.id)}
+              >
+                {button.name}
+              </Button>
             ))}
           </div>
 
@@ -42,25 +83,18 @@ export default function Home() {
         </LayoutLeft>
 
         <LayoutRight className={styles.LayoutRight}>
-          <BigCard
-            category="РФП"
-            date="30.05.22"
-            img="/images/current-events.png"
-            link="https://medinvest-group.ru/news/prezident-gk-mig-sergey-notov-vystupil-na-i-moskovskoy-onkologicheskoy-konferentsii-stolitsa-innovats.html"
-            text="Президент ГК «МИГ» выступил на I Московской онкологической конференции"
-            post="Ядерная медицина">
-          </BigCard>
+          <BigCard {...newsData[0]} />
           <Divider />
           <div className={styles.container_news}>
-            {NEWS_CARD.map((press, index) => (
-              <React.Fragment key={index}>
+            {newsData.slice(1).map((press, index) => (
+              <React.Fragment key={press.id}>
                 <NewsStill {...press}></NewsStill>
                 <Divider className={styles.divider} />
               </React.Fragment>
             ))}
           </div>
 
-          <Button empty className={styles.button_right}>Загрузить ещё</Button>
+          {newsLinks.next && <Button empty className={styles.button_right} onClick={loadMore}>Загрузить ещё</Button>}
         </LayoutRight>
       </Layout>
 
@@ -70,3 +104,29 @@ export default function Home() {
   )
 }
 
+export async function getStaticProps(ctx) {
+  // const team = await fetcher('api/team', ctx);
+  // const maps = await fetcher('api/maps', ctx);
+
+  console.time('news');
+  const [footer, news, categories] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+    fetcher('api/news', ctx),
+    fetcher('api/category', ctx),
+  ]);
+
+  console.timeEnd('news');
+
+  console.log(news)
+
+  return {
+    props: {
+      news,
+      categories: categories.data,
+      footer: footer.attributes
+    },
+    revalidate: 10
+  }
+
+  // return { props: { ...props} }
+}

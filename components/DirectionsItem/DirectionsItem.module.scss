@@ -9,6 +9,14 @@
   position: relative;
   @include spacer(padding, r, 15 / 8);
   @include spacer(padding, l, 12 / 8);
+
+  @include mobile {
+    flex-direction: column;
+    @include spacer(padding, t, 1);
+    @include spacer(padding, b, 3 / 4);
+    @include spacer(padding, x, 3 / 4);
+    align-items: flex-start;
+  }
 }
 
 .image {
@@ -33,13 +41,15 @@
 }
 
 .heading {
-  font-weight: 500;
-  font-size: 40px;
+  @include font-size(40, 22);
   line-height: 120%;
   letter-spacing: -0.015em;
   color: #ffffff;
   margin-bottom: 48px;
-
   position: relative;
   z-index: 1;
+
+  @include mobile {
+    line-height: 130%;
+  }
 }

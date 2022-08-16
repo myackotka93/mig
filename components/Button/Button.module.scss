@@ -22,7 +22,6 @@
   }
 
   @include mobile {
-    height: 36px;
     @include spacer(padding, x, 10 / 16);
   }
 }

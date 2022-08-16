@@ -6,7 +6,7 @@ import Button from '@/components/Button/Button';
 import typograf from '@/utils/typograf';
 import HtmlParser from 'html-react-parser';
 
-function Person({ name, id, small_image, info, biography }) {
+function Person({ name, id, small_image, info, active_page }) {
   return (
     <div className={styles.Person}>
       <div className={styles.img}>
@@ -16,7 +16,7 @@ function Person({ name, id, small_image, info, biography }) {
       <div className={styles.wrapper}>
         <h3 className={styles.name}>{name}</h3>
         <div className={styles.post}>{HtmlParser(typograf(info))}</div>
-        <Button link={!!biography ? ("/team/" + id) : null} className={styles.Button}>Узнать больше</Button>
+        {active_page === 1 && <Button link={"/team/" + id} className={styles.Button}>Узнать больше</Button>}        
       </div>
     </div>
   )

@@ -15,12 +15,14 @@ import { NEWS, PROJECTS } from '@/data/gchp'
 import Layout from '@/layouts/Layout/Layout'
 import LayoutLeft from '@/layouts/LayoutLeft/LayoutLeft'
 import LayoutRight from '@/layouts/LayoutRight/LayoutRight'
-import typograf from '@/utils/typograf'
+import typograf, { parser } from '@/utils/typograf'
 import classNames from 'classnames'
 import React, { useState } from 'react'
+import Divider from '@/components/Divider/Divider'
 import styles from './index.module.scss';
+import fetcher from '@/utils/fetcher'
 
-function Index() {
+function Index({ attributes, news }) {
   const [modalMain, setModalMain] = useState(false);
   const [projectModal, setProjectModal] = useState(null)
 
@@ -39,13 +41,15 @@ function Index() {
 
   return (
     <>
-      <HeaderBanner img='/images/header-gchp.jpg' />
+      <HeaderBanner img={attributes.background} />
+
       <Directions
-        onClick={handleMainModal}
-        title="Государственно-частное партнерство "
-        info="Проекты ГЧП в здравоохранении являются эффективным инструментом опережающего развития качественной и доступной медицинской помощи в стране."
-        text="Государство, благодаря партнерству, получает существенные инвестиционные вливания, и вместе с проектами в государственную систему здравоохранения приходят новые компетенции. "
+        // onClick={handleMainModal}
+        title={attributes.name}
+        info={attributes.short_info}
+        text={attributes.info}
       />
+
       <Layout>
         <LayoutLeft>
           <div className="h6">Цитата</div>
@@ -55,117 +59,99 @@ function Index() {
             <Icon name="marks" />
             <div>
               <div className={classNames('h7')}>
-                {typograf(`«Наша цель – сохранить ваше здоровье, чтобы вы могли прожить дольше и с удовольствием. И первая задача, которую я вместе с командой решу на этом пути – обеспечение доступности медицинской помощи в регионах России таким образом, чтобы вы могли получить ее там, где живете».`)}
+                {typograf(attributes.quote_text_main)}
               </div>
-              <Profile className={styles.person_avatar}></Profile>
+              <Profile name={attributes.author_main.name} info={attributes.author_main.info} className={styles.person_avatar}></Profile>
               {/* <Button>Узнать больше</Button> */}
             </div>
           </Quote>
         </LayoutRight>
       </Layout>
-      <Layout>
-        <LayoutLeft>
-          <div className="h5">Действующие <br /> проекты ГЧП</div>
-        </LayoutLeft>
-        <LayoutRight>
-          <div className={styles.projects}>
-            {
-              PROJECTS.map((p, i) => (
-                <Project onClick={() => handleModalProject(i)} key={i} {...p} />
-              ))
-            }
-          </div>
-        </LayoutRight>
-      </Layout>
-      <QuoteItem />
-      {/* <div className="offset"></div> */}
-      {/* <Banner /> */}
 
-      <div className="offset"></div>
-      <Plan />
-      <div className="offset"></div>
-      <Example />
-      <NewsEvents news={NEWS} />
+      <Divider className={styles.divider} />
+
+      {attributes.active_projects && (
+        <Layout>
+          <LayoutLeft>
+            <div className="h5">Действующие <br /> проекты ГЧП</div>
+          </LayoutLeft>
+          <LayoutRight className={styles.projects_right}>
+            <div className={styles.projects}>
+              {attributes.projects.map((p, i) => (
+                <Project
+                  className={styles.project}
+                  onClick={() => handleModalProject(i)}
+                  key={i}
+                  {...p}
+                  image={p.slide_image}
+                />
+              ))}
+            </div>
+          </LayoutRight>
+        </Layout>
+      )}
+
+      {attributes.quote_active && (
+        <QuoteItem
+          name={attributes.quote_author.name}
+          post={attributes.quote_author.info}
+          img={(process.env.NEXT_PUBLIC_BACKEND_API ?? '').slice(0, -1) + attributes.quote_author.small_image}
+          link={'/team/' + attributes.quote_author.id}
+          active_page={attributes.quote_author.active_page}
+          text={typograf(attributes.quote_text)}>
+        </QuoteItem>
+      )}
+
+      {attributes.active_banner && (
+        <>
+          <div className="offset"></div>
+          <Example banner={attributes.banner} popup={attributes.info_popup_banner} text={attributes.text_banner} />
+        </>
+      )}
+
+      {attributes.active_plan && (
+        <>
+          <div className="offset"></div>
+          <Plan plan={attributes.plan} text_plan={attributes.text_plan} />
+        </>
+      )}
+
+      <NewsEvents news={news} />
 
       <Modal onClose={handleCloseMainModal} isOpen={modalMain}>
-        <div className="h3">Государственно-частное партнерство </div>
-        <div className="offset"></div>
-        <p>Проекты ГЧП в здравоохранении являются эффективным инструментом опережающего развития качественной и доступной медицинской помощи в стране. Государство благодаря партнерству получает существенные инвестиционные вливания, и вместе с проектами в государственную систему здравоохранения приходят новые компетенции. Они позволяют сделать расходы более эффективными, расширить инструменты, используемые для оказания помощи по ОМС, способствуют появлению в регионах большого количества высокотехнологичных медицинских учреждений с уровнем сервиса, сопоставимым с частными медцентрами.</p>
-        <p>Это особенно важно для регионов с ограниченными бюджетами, поскольку позволяет быстрее открывать медцентры, качественнее их оснащать оборудованием. Инвестор при этом привносит в регион управленческие и экспертные знания и опыт, так как сам управляет реализуемыми проектами.</p>
-        <p>Для инвестора формат ГЧП-партнерства обеспечивает гарантии возвратности вложений. </p>
-        <p>
-          Важно, что те огромные затраты, которые компания берет на себя, гарантированно вернутся за счет средств ОМС, пациенты региональных субъектов будут получать все необходимые услуги и наши центры не будут простаивать.
-        </p>
-        <p>
-          С каждым годом доля частной медицины в общей системе здравоохранения растет, и пусть сегодня она еще мала, но динамика налицо. Частный бизнес заинтересован управлять учреждением максимально эффективно за счет повышения пропускной способности центра. Это ведет к снижению себестоимости проводимого исследования за счет снижения удельных постоянных затрат: сервиса медицинского оборудования, аренды помещений и пр.
-        </p>
-        <p>
-          Сформировавшийся остаток денежных средств медицинское учреждение может направить на повышение квалификации медицинских специалистов и улучшения условий их работы.
-        </p>
-        <img src="/images/gchp-modal.jpg" alt="" />
-        <div className="offset"></div>
-        <p>
-          Крупнейший текущий проект, реализуемый в формате ГЧП от ГК «МедИнвестГрупп» — онкорадиологические центры в Балашихе и Подольске. Соглашение с правительством Московской области было заключено в 2015 году, центры введены в эксплуатацию в 2018 году. Общий объем инвестиций в их создание составил 4,5 млрд руб.
-        </p>
-        <p>
-          Сейчас центры являются ведущими специализированными лечебными учреждениями Московской области, оказывающими услуги в рамках радиотерапии и радиохирургии пациентам со злокачественными новообразованиями.
-        </p>
-        <p>
-          Центры оснащены шестью линейными ускорителями для дистанционной стереотаксической лучевой терапии, аппаратом для внутриполостной брахитерапии, тремя позитронно-эмиссионными томографами для проведения ПЭТ/КТ, двумя аппаратами магнитно-резонансной и двумя — компьютерной томографии, двумя ОФЭКТ/КТ-сканерами. На территории центра в Балашихе также находится собственный производственный комплекс радиофармпрепаратов для проведения ПЭТ/КТ-диагностики.
-        </p>
-      </Modal>
-
-      <Modal isOpen={projectModal === 3} onClose={() => handleModalProject(null)}>
-        <div className="h4">Крупнейший текущий проект, реализуемый в формате ГЧП от «МедИнвестГрупп» — онкорадиологические центры в Балашихе и Подольске.</div>
-        <div className="offset"></div>
-        <p>Соглашение с правительством Московской области было заключено в 2015 году, центры введены в эксплуатацию в 2018 году. Общий объем инвестиций в их создание составил 4,5 млрд руб. Сейчас центры являются ведущими специализированными лечебными учреждениями Московской области, оказывающими услуги в рамках радиотерапии и радиохирургии пациентам со злокачественными новообразованиями. Центры оснащены шестью линейными ускорителями для дистанционной стереотаксической лучевой терапии, аппаратом для внутриполостной брахитерапии, тремя позитронно-эмиссионными томографами для проведения ПЭТ/КТ, двумя аппаратами магнитно-резонансной и двумя — компьютерной томографии, двумя ОФЭКТ/КТ-сканерами. На территории центра в Балашихе также находится собственный производственный комплекс радиофармпрепаратов для проведения ПЭТ/КТ-диагностики.</p>
+        {parser(attributes.info_popup)}
       </Modal>
 
       <Modal isOpen={projectModal === 0} onClose={() => handleModalProject(null)}>
-        <div className="h4">Онкорадиологический центр в Балашихе это  — </div>
-        <div className="offset"></div>
-        <div className="h6">Все виды диагностики:</div>
-        <div className="offset"></div>
-        <ul>
-          <li> КТ</li>
-          <li> МРТ</li>
-          <li> ОФЭКТ/КТ</li>
-          <li> Сцинтиграфия</li>
-          <li> ПЭТ/КТ</li>
-        </ul>
-        <div className="offset"></div>
-        <div className="h6">Лечение:</div>
-        <div className="offset"></div>
-        <ul>
-          <li>Лечение онкологических заболеваний на высокоточном оборудовании последнего поколения методами химиотерапии, лучевой терапии, химио-лучевой терапии</li>
-        </ul>
-        <div className="offset"></div>
-        <div className="h6">Препараты:</div>
-        <div className="offset"></div>
-        <ul>
-          <li>Полный спектр химиотерапевтических препаратов от лидеров фармацевтического рынка России.</li>
-        </ul>
-        <div className="offset"></div>
-        <Button link="https://oncoart.ru/balashiha/" target="_blank">Перейти на сайт</Button>
+        {parser(attributes.projects?.[0]?.info_popup)}
       </Modal>
 
       <Modal isOpen={projectModal === 1} onClose={() => handleModalProject(null)}>
-        <div className="h4">Онкорадиологический центр в Подольске</div>
-        <div className="offset"></div>
-        <p>Специализируется на диагностике, лечении, а также паллиативной помощи при онкологических заболеваниях. В своей практике клиника применяет метод позитронно-эмиссионной томографии (ПЭТ/КТ), лучевой терапии и многое другое.</p>
-        <Button link="https://oncoart.ru/podolsk/" target="_blank">Перейти на сайт</Button>
+        {parser(attributes.projects?.[1]?.info_popup)}
       </Modal>
 
       <Modal isOpen={projectModal === 2} onClose={() => handleModalProject(null)}>
-        <div className="h4">Сертификат ООН</div>
-        <div className="offset"></div>
-        <p>В 2021 г. Министерство инвестиций, промышленности и науки Московской области представило ГЧП проект «Онкорадиологические центры в Балашихе и Подольске» в Женеве на V международном форуме «Государственно-частное партнерство как основа эффективного восстановления», организованном Европейской экономической комиссией ООН.</p>
-        <p>
-          В рамках форума прошел конкурс проектов государственно-частного партнерства «Восстановление по принципу „лучше, чем было“ (англ. „Building Back Better“)». В конкурсе приняли участие 66 проектов из 25 стран мира: Саудовской Аравии, Великобритании, Испании, Индии, Бразилии, Китая и других. Проекты от Подмосковья вышли в финал и были отмечены специальной номинацией конкурса „Тиражируемость“ (Replicability).
-        </p>
+        {parser(attributes.projects?.[2]?.info_popup)}
+      </Modal>
+
+      <Modal isOpen={projectModal === 3} onClose={() => handleModalProject(null)}>
+        {parser(attributes.projects?.[3]?.info_popup)}
       </Modal>
     </>
   )
 }
 
 export default Index
+
+export async function getStaticProps(ctx) {
+  const [footer, page, news] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+    fetcher('api/page/gchp', ctx),
+    fetcher('api/news/category/gchp?limit=3', ctx)
+  ]);
+
+  page.attributes.quote_author = JSON.parse(page.attributes.quote_author ?? '{}');
+  page.attributes.author_main = JSON.parse(page.attributes.author_main ?? '{}');
+
+  return { props: { ...page, news: news.data, footer: footer.attributes }, revalidate: 10 }
+}

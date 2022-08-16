@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './Project.module.scss';
 import Button from '../Button/Button';
+import typograf from '@/utils/typograf';
+import Divider from '../Divider/Divider';
+import styles from './Project.module.scss';
 
 
-function Project({ title, image, children, onClick }) {
+function Project({ title, image, children, subtitle, onClick, className, color, border, button = 'Узнать больше' }) {
   return (
-    <div className={styles.Project}>
-      <h5 className={styles.heading}>{title}</h5>
+    <div className={classNames(styles.Project, className, styles[color])} style={{ border }}>
+      <h5 className={styles.heading}>{typograf(title)}</h5>
+      {subtitle && <h7 className={'h7'}>{typograf(subtitle)}</h7>}
+      <Divider className={styles.divider} light />
       {image && <img className={styles.img} src={image} alt="" />}
-      {children}
-      {onClick && <Button onClick={onClick} className={styles.Button}>Узнать больше</Button>}
+      <div className={styles.text}>
+        {children}
+      </div>
+      {onClick && <Button onClick={onClick} className={styles.Button}>{button}</Button>}
     </div>
   )
 }

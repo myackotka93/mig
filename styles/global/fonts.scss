@@ -78,10 +78,14 @@ h6,
 }
 
 ul {
+  @include flexGap(16px, column, li);
+  display: flex;
+  flex-direction: column;
+
   li {
     @include font-size(20, 14);
     line-height: 1.66;
-    @include spacer(margin, b, 1 / 2);
+    // @include spacer(margin, b, 1 / 2);
     position: relative;
     padding-left: 22px;
 

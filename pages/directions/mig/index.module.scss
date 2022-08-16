@@ -1,0 +1,62 @@
+@import "@/styles/global/mixins";
+
+.projects {
+  @include spacer(margin, x, -1 / 2);
+  @include spacer(margin, r, -3 / 2);
+  @include spacer(margin, b, -1);
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    @include spacer(margin, x, 1 / 2);
+    @include spacer(margin, b, 1);
+    width: calc(50% - $offsetMain);
+
+    @include tablet {
+      flex-direction: column;
+      width: calc(100% - $offsetMain);
+      @include spacer(margin, x, 0);
+    }
+  }
+
+  @include tablet-small {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+}
+
+.project {
+  @include tablet {
+    min-width: 85%;
+    margin-right: 16px;
+  }
+}
+
+.buttons_logo {
+  display: flex;
+  @include spacer(margin, b, 3 / 2);
+
+  @include mobile {
+    @include spacer(margin, b, 1 / 2);
+    @include spacer(margin, t, -1 / 2);
+  }
+}
+
+.buttons_item {
+  border: 1px solid #DADCE0;
+  background-color: #fff;
+  @include spacer(margin, r, 1 / 4);
+  @include spacer(padding, y, 1);
+  @include spacer(padding, x, 3 / 4);
+
+  @include mobile {
+    @include spacer(padding, y, 3 / 4);
+    @include spacer(padding, x, 1 / 4);
+  }
+}
+
+.buttons_icon {
+  @include mobile {
+    width: 100%;
+  }
+}

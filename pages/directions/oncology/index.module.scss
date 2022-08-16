@@ -1,45 +1,49 @@
 @import "@/styles/global/mixins";
 
 .advantages {
-    display: flex;
-    
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &_left {
+    width: 55%;
+  }
+
+  &_right {
+    margin-top: 48px;
+    width: 45%;
+
     @include mobile {
-      flex-direction: column;
-    }
-  
-    &_left {
-      width: 55%;
-    }
-  
-    &_right {
-      margin-top:48px;
-      width: 45%;
-  
-      @include mobile {
-        margin-top: 0;
-      }
+      margin-top: 0;
     }
   }
-  
-  .advantages_left {
-    width: 100%;
-  }
-  
-  .advantages_right {
-    width: 100%;
-  }
+}
 
-  .additions {
-    display: flex;
+.advantage {
+  min-width: auto;
+}
 
-    > * {
-      @include spacer(margin, r);
-    }
+.advantages_left {
+  width: 100%;
+}
 
-    > :last-child {
-      margin-right: 0;
-    }
+.advantages_right {
+  width: 100%;
+}
+
+.additions {
+  display: flex;
+  width: 100%;
+
+  @include flexGap(32px);
+
+  @include tablet {
+    flex-direction: column;
+    @include flexGap(0);
   }
+}
 
 .info_wrapper {
   @include spacer(margin, b, 10 / 8);
@@ -49,3 +53,98 @@
   @include spacer(margin, b, 10 / 8);
 }
 
+.service_layout {
+  display: flex;
+  // flex-direction: column;
+  background-color: #eeeff0;
+
+  // @include flexGap(32px);
+
+  &::-webkit-scrollbar {
+    width: 2px; /* ширина scrollbar */
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* цвет дорожки */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #0e3fb5; /* цвет плашки */
+    // border-radius: 10px; /* закругления плашки */
+    width: 2px;
+    border: 2px solid transparent; /* padding вокруг плашки */
+  }
+
+  @include vw-property(
+    (
+      padding-right: 0,
+      padding-top: 63px,
+    )
+  );
+}
+
+.service_block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &_layout {
+    // @include spacer(margin, r);
+    height: auto;
+  }
+}
+
+.data_heading {
+  @include spacer(margin, b, 3 / 2);
+}
+
+.data_subtitle {
+  max-width: 288px;
+  width: 100%;
+  color: #888e9c;
+}
+
+.services {
+  width: 100%;
+
+  @include vw-property(
+    (
+      padding-left: 158,
+      padding-right: 32,
+    )
+  );
+
+  @include tablet-small {
+    padding-left: 0;
+    @include spacer(padding, r);
+  }
+}
+
+.advantages_left {
+  @include tablet-small {
+    display: none;
+  }
+}
+
+.advantages_right {
+  @include tablet-small {
+    display: none;
+  }
+}
+
+.advantages_mobile {
+  display: none;
+
+  @include tablet-small {
+    display: flex;
+    overflow: auto;
+    @include spacer(margin, r, -1);
+    @include spacer(padding, r, 1);
+  }
+}
+
+.advantages_item {
+  width: 85%;
+}

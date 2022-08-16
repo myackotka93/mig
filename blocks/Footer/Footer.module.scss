@@ -165,8 +165,11 @@
 }
 
 .phone {
-  width: 40%;
+  width: 50%;
   @include font-size(18);
+  @include tablet-small {
+    @include spacer(margin, b, 1);
+  }
 }
 
 .email {
@@ -181,6 +184,10 @@
 
   @include mobile {
     width: 100%;
+  }
+
+  @include tablet-small {
+    @include spacer(margin, b, 1);
   }
 }
 

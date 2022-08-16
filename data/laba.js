@@ -40,7 +40,7 @@ const ADVANT = [
       { title: '2 300 <sup>кв. м.</sup>', type: 'ЦКДЛ на Оршанской', marginBottom: '272px', img: '/images/achievements1.png'},
       { background: '#FFFFFF', title: '200+', type: 'Квалифицированных специалистов', marginBottom: '266px', color: '#0E3FB5', color_text: '#000'},
       { title: '31', type: 'Действующих центров', marginBottom: '306px', img: '/images/achievements2.png'},
-      { background: '#FFFFFF', title: '65+', type: 'Лабораторных офисов сети NovaScreen', marginBottom: '202px', color: '#0E3FB5', color_text: '#000'},
+      { background: '#FFFFFF', title: '65+', type: 'Лабораторных офисов сети NovaScreen', marginBottom: '202px', color: '#0E3FB5', color_text: '#000', border: '1px solid #DADCE0'},
     ],
     right: [
       { background: '#EEEFF0', title: '>1 000+', type: 'Видов исследований', marginBottom: '230px', color: '#0E3FB5', color_text: '#000', fontSize: '70px'},

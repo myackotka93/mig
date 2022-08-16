@@ -2,6 +2,7 @@ import styles from './index.module.scss';
 import Layout from '@/layouts/Layout/Layout'
 import Divider from '@/components/Divider/Divider';
 import classNames from 'classnames';
+import fetcher from '@/utils/fetcher';
 
 export default function Home() {
 
@@ -33,6 +34,21 @@ export default function Home() {
           </div>
         </div>
       </Layout>
+
+
+      <Layout className={styles.map}>
+        <iframe className={styles.map_iframe} src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac48a82d30a4abcf497dda204df91ce41003df4fa21fbeee10d593e03d0706a74&amp;source=constructor" width="100%" frameBorder="0"></iframe>
+      </Layout>
+
+      <div className="offset"></div>
     </>
   )
+}
+
+export async function getStaticProps(ctx) {
+  const [footer] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+  ]);
+
+  return { props: { footer: footer.attributes }, revalidate: 10 }
 }

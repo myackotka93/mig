@@ -7,7 +7,7 @@ import { NEWS, ADVANT, ADDITION, BRANDS } from '@/data/oncology'
 import Layout from '@/layouts/Layout/Layout'
 import LayoutLeft from '@/layouts/LayoutLeft/LayoutLeft'
 import LayoutRight from '@/layouts/LayoutRight/LayoutRight'
-import typograf from '@/utils/typograf'
+import typograf, { parser } from '@/utils/typograf'
 import classNames from 'classnames'
 import React, { useState } from 'react'
 import Image from 'next/image'
@@ -15,9 +15,13 @@ import QuoteItem from '@/blocks/QuoteItem/QuoteItem'
 import Button from '@/components/Button/Button'
 import Advantages from '@/components/Advantages/Advantages'
 import Partners from '@/blocks/main/Partners/Partners'
+import CardService from '@/components/CardService/CardService'
+import Stage from '@/components/Stage/Stage'
+import fetcher from '@/utils/fetcher'
+import ExportSlider from '@/components/Slider/Slider'
 import styles from './index.module.scss';
 
-function Index() {
+function Index({ attributes, news }) {
 
   const [modalMain, setModalMain] = useState(false);
   const [activeButtonNews, setActiveButtonNews] = useState('ckdl');
@@ -41,10 +45,11 @@ function Index() {
 
   return (
     <>
-      <HeaderBanner img='/images/header-rphp.jpg' />
+      <HeaderBanner img={attributes.background} />
       <Directions
-        title="Онкологический кластер"
-        text="Особое внимание в ГК «МИГ» уделяется созданию и поддержке  инфраструктуры полного цикла онкологической помощи от диагностики до передовых методов лечения, реабилитации, динамического наблюдения и поддержки."
+        title={attributes.name}
+        info={attributes.short_info}
+        text={attributes.info}
       />
 
       <Layout>
@@ -52,66 +57,124 @@ function Index() {
 
         </LayoutLeft>
         <LayoutRight>
-          <div className={classNames(styles.info_heading, 'h4')}>От диагностики до реабилитации</div>
+          <div className={classNames(styles.info_heading, 'h4')}>{attributes.second_name}</div>
           <div className="offset"></div>
-          <p className={styles.info_text}>Возможность предоставить полный спектр медицинских услуг в сфере онкологии от диагностики до реабилитации выводит ГК «МедИнвестГрупп» в лидеры среди российских компаний, работающих в этой области.</p>
-          <div className={classNames(styles.info_wrapper, 'h6')}>Онкокластер ГК «МИГ» включает в себя:</div>
-          <ul className={styles.info_list}>
-            <li>Лабораторную диагностику</li>
-            <li>Лучевую и радионуклидную диагностику</li>
-            <li>Химиотерапию</li>
-            <li>Хирургию</li>
-            <li>Паллиативную помощь</li>
-            <li>Реабилитацию</li>
-            <li>Поддерживающую и восстанавливающую терапию</li>
-            <li>Клинические исследования и собственное производство радиофармпрепаратов</li>
-          </ul>
-          <Button>Подробнее</Button>
-        </LayoutRight>
-      </Layout>
-
-      <Layout>
-        <LayoutLeft>
-          <div className={classNames(styles.data_heading, 'h4')}>МИГ Онкология в цифрах</div>
-          <p className={styles.data_subtitle}>Особое внимание уделяется поддержке инфраструктуры онкокластера для обеспечения полного цикла диагностики и лечения.</p>
-        </LayoutLeft>
-        <LayoutRight>
-          <div className={styles.advantages}>
-            <div className={styles.advantages_left}>
-              {ADVANT[activeButtonAdvant].left.map((e, index) => (
-                <Advantages key={index} {...e}></Advantages>
-              ))}
-            </div>
-            <div className={styles.advantages_right}>
-              {ADVANT[activeButtonAdvant].right?.map((e, index) => (
-                <Advantages key={index} {...e}></Advantages>
-              ))}
-            </div>
+          <p className={styles.info_text}>{attributes.second_info}</p>
+          <div className={styles.info_wrapper}>
+            {parser(attributes.text)}
           </div>
+          {/* <Button onClick={handleMainModal}>Подробнее</Button> */}
         </LayoutRight>
       </Layout>
 
+      {attributes.active_stages && (
+        <Layout className={styles.service_layout}>
+          <ExportSlider
+            className={styles.services}
+            breakpoints={{
+              320: { slidesPerView: 1.2, spaceBetween: 16 },
+              768: { slidesPerView: 2, spaceBetween: 32 },
+              900: { slidesPerView: 1.5, spaceBetween: 32 },
+              1200: { slidesPerView: 2.3, spaceBetween: 32 },
+              1500: { slidesPerView: 2.5, spaceBetween: 32 },
+            }}
+          >
+            {attributes.stages.map((stage, index, array) => (
+              <ExportSlider.Slide key={index} className={styles.service_block_layout}>
+                <div className={styles.service_block}>
+                  <CardService last={!array[index + 1]} text={stage.text} />
+                  <Stage
+                    last={!array[index + 1]}
+                    text={stage.name}
+                    big={array[index + 1] && array[index + 1].name === stage.name}
+                    hide={array[index - 1] && array[index - 1].name === stage.name}
+                  />
+                </div>
+              </ExportSlider.Slide>
+            ))}
+          </ExportSlider>
+        </Layout>
+      )}
 
-      <div className="offset"></div>
-      <Banner src='/images/banner-oncology.png' />
-      <div className="offset"></div>
-      <Partners
-        blocks={BRANDS}
-        title="Бренды"
-        text='Бренды онкологического кластера ГК«МИГ»'
-      />
+      {attributes.active_mig && (
+        <Layout>
+          <LayoutLeft>
+            <div className={classNames(styles.data_heading, 'h4')}>МИГ Онкология в цифрах</div>
+            <p className={styles.data_subtitle}>Особое внимание уделяется поддержке инфраструктуры онкокластера для обеспечения полного цикла диагностики и лечения.</p>
+          </LayoutLeft>
+          <LayoutRight>
+            {/* <AdvantagesLayout items={ADVANT}></AdvantagesLayout> */}
+            <div className={styles.advantages}>
+              <div className={styles.advantages_left}>
+                {attributes.advantages_mig.filter((e, index) => index % 2 === 0).map((e, index) => (
+                  <Advantages key={index} {...e} type={e.text} img={e.slide_image}></Advantages>
+                ))}
+              </div>
+              <div className={styles.advantages_right}>
+                {attributes.advantages_mig.filter((e, index) => index % 2 === 1).map((e, index) => (
+                  <Advantages key={index} {...e} type={e.text} img={e.slide_image}></Advantages>
+                ))}
+              </div>
+
+              <div className={styles.advantages_mobile}>
+                {attributes.advantages_mig.map((e, index) =>
+                  <Advantages key={index} {...e} className={styles.advantages_item} img={e.slide_image}></Advantages>
+                )}
+              </div>
+            </div>
+          </LayoutRight>
+        </Layout>
+      )}
+
+      {attributes.active_banner && (
+        <>
+          <div className="offset"></div>
+          <Banner src={attributes.banner} />
+        </>
+      )}
+      {attributes.active_brands && (
+        <>
+          <div className="offset"></div>
+          <Partners
+            blocks={attributes.brands}
+            title="Бренды"
+            text={attributes.text_brands}
+          />
+        </>
+      )}
       <Layout>
         <div className={styles.additions}>
-          {
-            ADDITION.map((e, index) => (
-              <Advantages key={index} {...e} ></Advantages>
-            ))
-          }
+          {[
+            { title: attributes.left_title_last, text: attributes.left_text_last, color: attributes.left_color_last, img: attributes.left_image_last },
+            { title: attributes.center_title_last, text: attributes.center_text_last, color: attributes.center_color_last, img: attributes.center_image_last },
+            { title: attributes.right_title_last, text: attributes.right_text_last, color: attributes.right_color_last, img: attributes.right_image_last },
+          ].map((e, index) => (
+            <Advantages
+              className={styles.advantage}
+              key={index}
+              {...e}
+            ></Advantages>
+          ))}
         </div>
       </Layout>
-      <NewsEvents news={NEWS} />
+
+      <NewsEvents news={news} />
+
+      <Modal onClose={handleCloseMainModal} isOpen={modalMain}>
+        {parser(attributes.info_popup)}
+      </Modal>
     </>
   )
 }
 
 export default Index
+
+export async function getStaticProps(ctx) {
+  const [footer, page, news] = await Promise.all([
+    fetcher('api/option/footer', ctx),
+    fetcher('api/page/oncology', ctx),
+    fetcher('api/news/category/onkologiya?limit=3', ctx)
+  ]);
+
+  return { props: { ...page, news: news.data, footer: footer.attributes }, revalidate: 10 }
+}

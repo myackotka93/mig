@@ -23,19 +23,16 @@ const NEWS = [
   ];
 
   const ADVANT = [
-    {
-      left: [
-        { background: '#F3F9FF', title: '24', type: 'Линейных ускорителя', marginBottom: '306px', color: '#0E3FB5', color_text: '#000' },
-        { background: '#FFFFFF', title: '27', type: 'Регионов: Центральный, Южный, Северо-Кавказский, Уральский, Сибирский Федеральные Округа', marginBottom: '232px', color: '#0E3FB5', color_text: '#000', border: '1px solid #DADCE0', borderTop: 'none'},
-        { title: '24', type: 'Региональных центра ПЭТ/КТ диагностики', marginBottom: '272px', img: '/images/achievements3.png'},
-      ],
-      right: [
-        { title: '35', type: 'ПЭТ/КТ сканеров', marginBottom: '264px', fontSize: '70px', img: '/images/achievements4.png'},
-        { background: '#0E3FB5', title: '10', type: 'Центров лучевой терапии', marginBottom: '264px', fontSize: '70px'},
-        { background: '#EEEFF0', title: '4', type: 'Многопрофильных клиники(г. Москва и Московская область)', marginBottom: '230px', color: '#0E3FB5', color_text: '#000', fontSize: '70px'},
-        { background: '#0E3FB5', title: '+11', type: 'Регионов присутствия до конца 2024 года', marginBottom: '264px', fontSize: '70px'},
-      ],
-    }
+        { title: '24', type: 'Линейных ускорителя', marginBottom: '306px', color: 'gray', color_text: '#000' },
+        { title: '35', color: 'blue', type: 'ПЭТ/КТ сканеров', marginBottom: '264px', fontSize: '70px', img: '/images/achievements4.png'},
+        
+        { title: '27', type: 'Регионов: Центральный, Южный, Северо-Кавказский, Уральский, Сибирский Федеральные Округа', marginBottom: '232px', color: 'white', color_text: '#000', border: '1px solid #DADCE0', borderTop: 'none'},
+        { color: 'blue', title: '10', type: 'Центров лучевой терапии', marginBottom: '264px', fontSize: '70px'},
+        { title: '24', color: 'blue', type: 'Региональных центра ПЭТ/КТ диагностики', marginBottom: '272px', img: '/images/achievements3.png'},
+  
+        { color: 'gray', title: '4', type: 'Многопрофильных клиники(г. Москва и Московская область)', marginBottom: '230px', color_text: '#000', fontSize: '70px'},
+        { color: 'blue', title: '+11', type: 'Регионов присутствия до конца 2024 года', marginBottom: '264px', fontSize: '70px'},
+      
   ];
 
 const ADDITION = [
@@ -90,12 +87,50 @@ const BRANDS = [
   },
 ];
 
+const SERVICES = [
+  {
+    title: 'Консультация',
+    list: `<li>Амбулаторный прием</li>
+    <li>Консультация врачей</li>
+    <li>Консилиумы</li>
+    <li>«Второе мнение»</li>
+    <li>Телемедицина</li>`
+  },
+  {
+    title: 'Диагностика',
+    list: `<li>Лабораторная</li>
+    <li>Лучевая</li>
+    <li>Инструментальная</li>
+    <li>Радионуклидная</li>`
+  },
+  {
+    title: 'Лечение',
+    list: `<li>Хирургия (включая роботизированную)</li>
+    <li>Лекарственная терапия</li>
+    <li>Лучевая терапия и радиохирургия</li>
+    <li>Радионуклидная терапия</li>`
+  },
+  {
+    title: 'Реабилитация',
+    list: `<li>Физиотерапевтическая</li>
+    <li>Медикаментозная</li>
+    <li>Психологическая</li>`
+  },
+  {
+    title: 'Наблюдение',
+    list: `<li>Профилактический скрининг</li>
+    <li>Дистанционное наблюдение</li>
+    <li>Повторные консультации</li>`
+  },
+]
+
 
 
 export {
 NEWS,
 ADDITION,
 ADVANT,
-BRANDS
+BRANDS, 
+SERVICES
 }
   
