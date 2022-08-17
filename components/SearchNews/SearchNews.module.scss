@@ -1,8 +1,8 @@
-@import '@/styles/global/mixins';
+@import "@/styles/global/mixins";
 
 .SearchNews {
   width: 100%;
-  border: 1px solid #DADCE0;
+  border: 1px solid #dadce0;
   @include spacer(padding, x, 1);
   @include spacer(padding, t, 1);
   @include spacer(padding, b, 3 / 2);
@@ -11,9 +11,9 @@
 .top {
   display: flex;
   align-items: center;
-  @include spacer(margin, b, 3 / 4.5)
+  @include spacer(margin, b, 3 / 4.5);
 }
-  
+
 .vert_line {
   width: 1px;
   background-color: #888e9c;
@@ -37,12 +37,16 @@
   font-size: 22px;
   line-height: 136%;
   letter-spacing: -0.03em;
-  color: #11151D;
+  color: #11151d;
   @include spacer(margin, b, 10 / 8);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
 }
 
 .button {
   background-color: #fff;
-  color: #0E3FB5;
-  border: 1.5px solid #DADCE0;
+  color: #0e3fb5;
+  border: 1.5px solid #dadce0;
 }

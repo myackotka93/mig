@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import Button from '../Button/Button';
 import styles from './SearchNews.module.scss';
 
-function SearchNews({ heading='Президент ГК «МИГ» выступил конференции «Столица инновационной онкологии 2022»'}) {
+function SearchNews({ title, searchable, url }) {
   return (
     <div className={styles.SearchNews}>
       <div className={styles.top}>
-        <div className={styles.department}>Онкология</div>
+        <div className={styles.department}>{searchable.category.name}</div>
         <div className={styles.vert_line}></div>
-        <div className={styles.date}>30.05.22</div>
+        <div className={styles.date}>{new Date(searchable.date).toLocaleDateString()}</div>
       </div>
-      <p className={styles.heading}>{heading}</p>
-      <Button className={styles.button}>Подробнее</Button>
+      <p className={styles.heading}>{title}</p>
+      <Button link={url} className={styles.button}>Подробнее</Button>
     </div>
   )
 }

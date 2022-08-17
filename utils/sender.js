@@ -91,5 +91,17 @@ export async function senderObject(url, form) {
 }
 
 export async function getter(url) {
-  
+  return new Promise(async (resolve, reject) => {
+    let endpoint;
+
+    try {
+      if (typeof url === 'string') endpoint = CONFIG.API + url;
+      else if (typeof url === 'function') endpoint = url();
+      const { data } = await CONFIG.axios.get(endpoint);
+
+      resolve(data);
+    } catch (e) {
+      reject(e)
+    }
+  });
 }

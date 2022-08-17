@@ -1,11 +1,11 @@
-@import '@/styles/global/mixins';
+@import "@/styles/global/mixins";
 
 .title {
   font-weight: 400;
   font-size: 22px;
   line-height: 166%;
   letter-spacing: -0.015em;
-  color: #888E9C;
+  color: #888e9c;
 
   @include tablet-small {
     @include spacer(margin, b, 1 / 2);
@@ -17,7 +17,7 @@
   font-size: 26px;
   line-height: 120%;
   letter-spacing: -0.03em;
-  color: #11151D;
+  color: #11151d;
 
   @include tablet-small {
     @include spacer(margin, b, 0);
@@ -30,6 +30,7 @@
 
 .right {
   border-left: none;
+  position: relative;
 
   @include tablet-small {
     border-top: none;
@@ -37,7 +38,7 @@
 }
 
 .search_news {
-    width: 50%;
+  width: 50%;
 }
 
 .heading {
@@ -50,4 +51,57 @@
   @include tablet-small {
     @include spacer(padding, b, 0);
   }
+}
+
+.right {
+  .prev,
+  .next {
+    position: absolute;
+    bottom: 50%;
+    z-index: 1;
+
+    &:global(.swiper-button-disabled) {
+      opacity: 0;
+    }
+  }
+
+  .prev {
+    left: $offsetMain;
+    transform: translateX(-50%);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .next {
+    right: $offsetMain;
+    transform: translateX(50%);
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+.slide {
+  height: auto;
+
+  > * {
+    height: 100%;
+  }
+}
+
+.search {
+  height: 100%;
+}
+
+.directions {
+  display: flex;
+  flex-direction: column;
+  @include flexGap(16px, column);
+}
+
+.notfound {
+  width: 100%;
 }

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Search.module.scss';
 import sender, { getter } from '@/utils/sender';
-
+import { useRouter } from 'next/router'
 function Search({ open, onClose }) {
   const input = useRef();
+  const { push } = useRouter();
 
   function bindClose(event) {
     if (event.key === "Escape") {
@@ -15,7 +16,10 @@ function Search({ open, onClose }) {
 
   function startSearch(event) {
     if (event.key == "Enter") {
-      getter('search?search=' + event.target.value);
+      onClose();
+      push('/search?search=' + event.target.value)
+      // Router.
+      // getter('search?search=' + event.target.value);
     }
   }
 
@@ -29,7 +33,7 @@ function Search({ open, onClose }) {
         document.removeEventListener('keydown', bindClose)
       }
     }
-  }, [open]);
+  }, [open, bindClose]);
 
   useEffect(() => {
     if (input.current) {
@@ -41,7 +45,7 @@ function Search({ open, onClose }) {
         input.current.removeEventListener('keydown', startSearch)
       }
     }
-  }, [input])
+  }, [input, startSearch])
 
 
   return (

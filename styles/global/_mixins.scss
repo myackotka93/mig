@@ -309,7 +309,6 @@
   font-weight: 600;
 }
 
-
 @mixin flexGap($gap, $direction: row, $element: div) {
   & > #{$element}:not(:empty) {
     @if ($direction == row) {
@@ -335,5 +334,20 @@
         margin-bottom: 0;
       }
     }
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
   }
 }

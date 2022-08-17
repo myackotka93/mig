@@ -68,7 +68,7 @@ function Index({ attributes, news }) {
                   <Project
                     className={styles.project}
                     onClick={() => handleModalProject(p.link)}
-                    key={p.id}
+                    key={p.title}
                     color={p.color}
                     // {...p}
                     title={p.title}
@@ -83,7 +83,7 @@ function Index({ attributes, news }) {
           </LayoutRight>
         </Layout>
       )}
-      
+
       {attributes.quote_active && (
         <QuoteItem
           name={attributes.quote_author.name}

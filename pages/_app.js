@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
-      <Header />
+      <Header data={pageProps.footer} />
 
       <div className="wrapper">
         <Component {...pageProps} />
